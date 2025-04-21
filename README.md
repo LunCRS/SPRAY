@@ -2,6 +2,24 @@
 
 <hr>
 
+# Commit
+参照[https://www.conventionalcommits.org/en/v1.0.0/]
+
+简单地：
+
+```
+feat(range of affected file, if those file can be described easily): implement some features, or do other things about features.
+fix(range of affected file, if those file can be described easily): fix some problems.
+style(range of affected file, if those file can be described easily): change about code style.
+chore(range of affected file, if those file can be described easily): things don't related to code.
+
+If cannot describe affected file, left there no "()".
+If a commit is important, add "!" after scope. For example, feat!: do something.
+```
+For more examples, please see conventionalcommits.
+
+<hr>
+
 # Doc
 
 初始操作：
