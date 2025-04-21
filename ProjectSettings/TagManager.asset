@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bullet
+  - ColorBlock
   layers:
   - Default
   - TransparentFX
@@ -11,10 +13,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Red Layer
+  - Green Layer
+  - Blue Layer
   - 
   - 
   - 
