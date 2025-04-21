@@ -7,13 +7,13 @@ public class ThirdPersonCamera : MonoBehaviour
 {
     private GameObject mainCamera;
     [Header( "Cinemachine" )]
-    [Tooltip( "跟随的目标" )]
+    [Tooltip( "Follow target" )]
     public GameObject cameraTarget;
 
-    [Tooltip( "上移最大角度" )]
+    [Tooltip( "Maximum angle of rotate up" )]
     public float topClamp = 70.0f;
 
-    [Tooltip( "下移最大角度" )]
+    [Tooltip( "Maximum angle of rotate down" )]
     public float bottomClamp = -30.0f;
 
     private const float threshold = 0.01f;

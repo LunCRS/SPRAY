@@ -40,8 +40,6 @@ public class ThirdPersonMove : MonoBehaviour
             //controller.Move(targetDir.normalized * moveSpeed * Time.deltaTime);
             rb.velocity = new Vector3( moveSpeed * targetDir.x,rb.velocity.y,moveSpeed * targetDir.z );
         }
-
-        
     }
 
     void OnMove(InputValue value)
