@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class ThirdPersonDirectionFollow : MonoBehaviour
 {
-    Camera mainCamera;
+    private GameObject mainCamera;
     [SerializeField] private float turnSpeed;
     void Start()
     {
-        mainCamera = Camera.main;
+        if( mainCamera == null )
+        {
+            mainCamera = GameObject.FindGameObjectWithTag( "MainCamera" );
+        }
     }
 
     void Update()

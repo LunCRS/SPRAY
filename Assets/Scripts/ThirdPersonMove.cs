@@ -7,10 +7,13 @@ public class ThirdPersonMove : MonoBehaviour
 {
     private CharacterController controller;
     private GameObject mainCamera;
+    private Rigidbody rb;
 
     private Vector2 move;
 
     [SerializeField] private float moveSpeed = 6.0f;
+    [SerializeField] private float jumpForce = 5.0f;
+
     private float targetRotation = 0.0f;
     private Vector3 targetDir;
 
@@ -23,9 +26,10 @@ public class ThirdPersonMove : MonoBehaviour
         }
 
         controller = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if(move != Vector2.zero)
         {
@@ -33,13 +37,20 @@ public class ThirdPersonMove : MonoBehaviour
             targetRotation = Mathf.Atan2( inputDir.x,inputDir.z ) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
             targetDir = Quaternion.Euler( 0.0f,targetRotation,0.0f ) * Vector3.forward;
 
-            transform.rotation = Quaternion.Euler( 0.0f,targetRotation,0.0f );
-            controller.Move(targetDir.normalized * moveSpeed * Time.deltaTime);
+            //controller.Move(targetDir.normalized * moveSpeed * Time.deltaTime);
+            rb.velocity = new Vector3( moveSpeed * targetDir.x,rb.velocity.y,moveSpeed * targetDir.z );
         }
+
+        
     }
 
     void OnMove(InputValue value)
     {
         move = value.Get<Vector2>();
+    }
+
+    void OnJump(InputValue value)
+    {
+        rb.velocity = new Vector3( rb.velocity.x,jumpForce,rb.velocity.z );
     }
 }
