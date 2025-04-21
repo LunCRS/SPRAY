@@ -1,4 +1,0 @@
-repository "2025 CUSGA@tj_ambzfcayn@cloud.cn"
-  path "/"
-    br "/main"
-    co "/main"
