@@ -258,7 +258,7 @@ StyleCopReport.xml
 *_p.c
 *_h.h
 *.ilk
-*.meta
+#*.meta Unity Need This.
 *.obj
 *.iobj
 *.pch
