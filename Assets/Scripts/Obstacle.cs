@@ -5,11 +5,14 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     private Renderer rend;
+    [SerializeField] private Color originColor = Color.white;
 
 
     void Start()
     {
         rend = GetComponentInChildren<Renderer>();
+
+        rend.material.color = originColor;
     }
 
     void Update()

@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerFire : MonoBehaviour
 {
-    [SerializeField] private GameObject prefabBullet;
     [SerializeField] private GameObject mainCamera;
 
+    [SerializeField] private GameObject prefabBullet;
     [SerializeField] private Color bulletColor = Color.red;
 
     void Start()
@@ -28,7 +28,6 @@ public class PlayerFire : MonoBehaviour
     {
         Transform transform = GetComponent<Transform>();
         CreateBullet( transform );
-
     }
 
     private void CreateBullet ( Transform transform )
