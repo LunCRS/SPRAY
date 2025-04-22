@@ -86,3 +86,25 @@ git reset --hard origin/main
 git push origin main --force
 ```
 
+撤销上一次commit和add，但保留本地修改：
+```git
+git reset --mixed HEAD^
+git reset HEAD^
+二者效果相同
+```
+
+撤销上一次commit，但保留add和本地修改：
+```git
+git reset --soft HEAD^
+```
+
+撤销上一次commit、add和本地修改：
+```git
+git reset --hard HEAD^
+```
+
+将修改并入上一次commit：
+```git
+git commit --amend
+```
+会打开一个文件，可以在文件内重新修改commit的信息
