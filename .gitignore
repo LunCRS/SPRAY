@@ -161,6 +161,9 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+# Self Edited
+*.vsconfig
+
 # ---> Vim
 # Swap
 [._]*.s[a-v][a-z]
