@@ -49,7 +49,7 @@ Host trash0gitea
 ```
     IdentityFile 那个文件的完整目录
 ```
-在gitea中加入ssh key，公钥为 `C:/Users/你的用户名/.ssh/id_ed25519.pub` 的内容。
+在gitea中加入ssh key，公钥为 `C:/Users/你的用户名/.ssh/id_ed25519.pub` (如果前面有更改文件名，改为那个文件) 的内容。
 
 ### 2. clone项目
 
