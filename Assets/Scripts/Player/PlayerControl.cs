@@ -20,6 +20,8 @@ public class PlayerControl : MonoBehaviour
     [Header("Move info")]
     [SerializeField] private float moveSpeed = 6.0f;
     [SerializeField] private float jumpForce = 5.0f;
+    [SerializeField] private float groundCheckDis = 0.1f;
+    [SerializeField] private LayerMask whatIsGround;
     private Vector2 move;
     private Vector3 targetDir;
     private float targetRotation = 0.0f;
@@ -36,7 +38,7 @@ public class PlayerControl : MonoBehaviour
         rend = GetComponentInChildren<Renderer>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if(move != Vector2.zero)
         {
@@ -46,6 +48,10 @@ public class PlayerControl : MonoBehaviour
 
             rb.velocity = new Vector3( moveSpeed * targetDir.x,rb.velocity.y,moveSpeed * targetDir.z );
         }
+        else
+        {
+            rb.velocity = new Vector3(0f, rb.velocity.y,0f );
+        }
     }
 
     void OnMove(InputValue value)
@@ -53,9 +59,23 @@ public class PlayerControl : MonoBehaviour
         move = value.Get<Vector2>();
     }
 
+    private void OnDrawGizmos ()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine( transform.position,new Vector3(transform.position.x, transform.position.y - groundCheckDis, transform.position.z) );
+    }
+    private bool IsGrounded ()
+    {
+        RaycastHit hit;
+
+        if( Physics.Raycast( transform.position,Vector3.down,out hit,groundCheckDis ) )
+            return hit.collider.gameObject.layer != gameObject.layer;
+
+        return false;
+    }
     void OnJump(InputValue value)
     {
-        if(rb.velocity.y == 0)
+        if(IsGrounded())
             rb.velocity = new Vector3( rb.velocity.x,jumpForce,rb.velocity.z );
     }
 
@@ -78,21 +98,19 @@ public class PlayerControl : MonoBehaviour
             bullet.layer = LayerMask.NameToLayer( "Blue Layer" );
     }
 
+
     public void SetPlayerColor ( Color color )
     {
         selfColor = color;
 
-        // 获取子对象
-        Transform child = transform.Find( "Body" ); // 替换为子对象的名称
+        Transform child = transform.Find( "Body" );
 
         if( child != null )
         {
-            // 获取子对象的 Renderer 组件
             Renderer renderer = child.GetComponent<Renderer>();
 
             if( renderer != null )
             {
-                // 更改颜色
                 renderer.material.color = selfColor;
             }
         }
