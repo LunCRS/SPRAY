@@ -11,6 +11,7 @@ public class PlayerControl : MonoBehaviour
     private Renderer rend;
     #endregion
 
+    public int playerID;
 
     [Header( "Shoot info")]
     [SerializeField] private GameObject prefabBullet;
@@ -29,10 +30,15 @@ public class PlayerControl : MonoBehaviour
 
     void Start()
     {
-        if(mainCamera == null)
-        {
-            mainCamera = GameObject.FindGameObjectWithTag( "MainCamera" );
-        }
+        //if(mainCamera == null)
+        //{
+        //    mainCamera = GameObject.FindGameObjectWithTag( "MainCamera" );
+        //}
+
+        if( playerID == 1 )
+            mainCamera = GameObject.FindGameObjectWithTag( "Cam1" );
+        else
+            mainCamera = GameObject.FindGameObjectWithTag( "Cam2" );
 
         rb = GetComponent<Rigidbody>();
         rend = GetComponentInChildren<Renderer>();

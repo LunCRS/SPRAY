@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bullet
   - ColorBlock
+  - Cam1
+  - Cam2
   layers:
   - Default
   - TransparentFX

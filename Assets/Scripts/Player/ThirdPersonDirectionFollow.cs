@@ -6,12 +6,18 @@ public class ThirdPersonDirectionFollow : MonoBehaviour
 {
     private GameObject mainCamera;
     [SerializeField] private float turnSpeed;
+    [SerializeField] private int playerID;
     void Start()
     {
-        if( mainCamera == null )
-        {
-            mainCamera = GameObject.FindGameObjectWithTag( "MainCamera" );
-        }
+        //if( mainCamera == null )
+        //{
+        //    mainCamera = GameObject.FindGameObjectWithTag( "MainCamera" );
+        //}
+
+        if( playerID == 1 )
+            mainCamera = GameObject.FindGameObjectWithTag( "Cam1" );
+        else
+            mainCamera = GameObject.FindGameObjectWithTag( "Cam2" );
     }
 
     void Update()
