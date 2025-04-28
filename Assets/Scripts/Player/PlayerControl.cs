@@ -14,9 +14,9 @@ public class PlayerControl : MonoBehaviour
     public int playerID;
 
     [Header( "Shoot info")]
-    [SerializeField] private GameObject prefabBullet;
+    public Color selfColor;
     [SerializeField] private Color bulletColor;
-    [SerializeField] private Color selfColor;
+    [SerializeField] private GameObject prefabBullet;
 
     [Header("Move info")]
     [SerializeField] private float moveSpeed = 6.0f;
@@ -87,8 +87,8 @@ public class PlayerControl : MonoBehaviour
 
     void OnFire ( InputValue value )
     {
-        Transform transform = GetComponent<Transform>();
-        CreateBullet( transform );
+        Transform trans = transform.Find( "FirePoint" );
+        CreateBullet( trans );
     }
 
     private void CreateBullet ( Transform transform )
