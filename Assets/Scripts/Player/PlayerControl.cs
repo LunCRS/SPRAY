@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour
     private GameObject mainCamera;
     private Rigidbody rb;
     private Renderer rend;
+    private InputActionAsset inputActionAsset;
     #endregion
 
     public int playerID;
@@ -17,6 +18,11 @@ public class PlayerControl : MonoBehaviour
     public Color selfColor;
     [SerializeField] private Color bulletColor;
     [SerializeField] private GameObject prefabBullet;
+    [SerializeField] private float fireRate = 0.5f;
+    private float fireTimer = 0f;
+    private InputAction fireAction;
+    private bool isPerformingFire = false;
+    
 
     [Header("Move info")]
     [SerializeField] private float moveSpeed = 6.0f;
@@ -30,10 +36,6 @@ public class PlayerControl : MonoBehaviour
 
     void Start()
     {
-        //if(mainCamera == null)
-        //{
-        //    mainCamera = GameObject.FindGameObjectWithTag( "MainCamera" );
-        //}
 
         if( playerID == 1 )
             mainCamera = GameObject.FindGameObjectWithTag( "Cam1" );
@@ -42,11 +44,16 @@ public class PlayerControl : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         rend = GetComponentInChildren<Renderer>();
+        inputActionAsset = GetComponent<PlayerInput>().actions;
+        fireAction = inputActionAsset.FindAction( "Fire" );
+
+        fireAction.started += ctx => isPerformingFire = true;
+        fireAction.canceled += ctx => isPerformingFire = false;
     }
 
     void Update()
     {
-        if(move != Vector2.zero)
+        if( move != Vector2.zero )
         {
             Vector3 inputDir = new Vector3( move.x,0.0f,move.y ).normalized;
             targetRotation = Mathf.Atan2( inputDir.x,inputDir.z ) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
@@ -56,9 +63,12 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
-            rb.velocity = new Vector3(0f, rb.velocity.y,0f );
+            rb.velocity = new Vector3( 0f,rb.velocity.y,0f );
         }
+
+        FireUpdate();
     }
+
 
     void OnMove(InputValue value)
     {
@@ -87,8 +97,19 @@ public class PlayerControl : MonoBehaviour
 
     void OnFire ( InputValue value )
     {
+        fireTimer = -fireRate;
         Transform trans = transform.Find( "FirePoint" );
         CreateBullet( trans );
+    }
+    private void FireUpdate ()
+    {
+        fireTimer += Time.deltaTime;
+        if( isPerformingFire && fireTimer >= 0 )
+        {
+            Transform trans = transform.Find( "FirePoint" );
+            CreateBullet( trans );
+            fireTimer = -fireRate;
+        }
     }
 
     private void CreateBullet ( Transform transform )
