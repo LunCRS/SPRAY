@@ -12,7 +12,7 @@ public class PlayerControl : MonoBehaviour
     #endregion
 
 
-    [Header( "Shoot info")]
+    [Header("Shoot info")]
     [SerializeField] private GameObject prefabBullet;
     [SerializeField] private Color bulletColor;
     [SerializeField] private Color selfColor;
@@ -27,9 +27,9 @@ public class PlayerControl : MonoBehaviour
 
     void Start()
     {
-        if(mainCamera == null)
+        if (mainCamera == null)
         {
-            mainCamera = GameObject.FindGameObjectWithTag( "MainCamera" );
+            mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         }
 
         rb = GetComponent<Rigidbody>();
@@ -38,13 +38,13 @@ public class PlayerControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(move != Vector2.zero)
+        if (move != Vector2.zero)
         {
-            Vector3 inputDir = new Vector3( move.x,0.0f,move.y ).normalized;
-            targetRotation = Mathf.Atan2( inputDir.x,inputDir.z ) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
-            targetDir = Quaternion.Euler( 0.0f,targetRotation,0.0f ) * Vector3.forward;
+            Vector3 inputDir = new Vector3(move.x, 0.0f, move.y).normalized;
+            targetRotation = Mathf.Atan2(inputDir.x, inputDir.z) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
+            targetDir = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward;
 
-            rb.velocity = new Vector3( moveSpeed * targetDir.x,rb.velocity.y,moveSpeed * targetDir.z );
+            rb.velocity = new Vector3(moveSpeed * targetDir.x, rb.velocity.y, moveSpeed * targetDir.z);
         }
     }
 
@@ -55,56 +55,56 @@ public class PlayerControl : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        if(rb.velocity.y == 0)
-            rb.velocity = new Vector3( rb.velocity.x,jumpForce,rb.velocity.z );
+        if (rb.velocity.y == 0)
+            rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
     }
 
-    void OnFire ( InputValue value )
+    void OnFire(InputValue value)
     {
         Transform transform = GetComponent<Transform>();
-        CreateBullet( transform );
+        CreateBullet(transform);
     }
 
-    private void CreateBullet ( Transform transform )
+    private void CreateBullet(Transform transform)
     {
-        GameObject bullet = Instantiate( prefabBullet,transform.position,mainCamera.transform.rotation );
-        if( bulletColor == Color.white )
-            bullet.layer = LayerMask.NameToLayer( "Default" );
-        else if( bulletColor == Color.red )
-            bullet.layer = LayerMask.NameToLayer( "Red Layer" );
-        else if( bulletColor == Color.green )
-            bullet.layer = LayerMask.NameToLayer( "Green Layer" );
-        else if( bulletColor == Color.blue )
-            bullet.layer = LayerMask.NameToLayer( "Blue Layer" );
+        GameObject bullet = Instantiate(prefabBullet, transform.position, mainCamera.transform.rotation);
+        if (bulletColor == Color.white)
+            bullet.layer = LayerMask.NameToLayer("Default");
+        else if (bulletColor == Color.red)
+            bullet.layer = LayerMask.NameToLayer("Red Layer");
+        else if (bulletColor == Color.green)
+            bullet.layer = LayerMask.NameToLayer("Green Layer");
+        else if (bulletColor == Color.blue)
+            bullet.layer = LayerMask.NameToLayer("Blue Layer");
     }
 
-    public void SetPlayerColor ( Color color )
+    public void SetPlayerColor(Color color)
     {
         selfColor = color;
 
-        // »ñÈ¡×Ó¶ÔÏó
-        Transform child = transform.Find( "Body" ); // Ìæ»»Îª×Ó¶ÔÏóµÄÃû³Æ
+        // ï¿½ï¿½È¡ï¿½Ó¶ï¿½ï¿½ï¿½
+        Transform child = transform.Find("Body"); // ï¿½æ»»Îªï¿½Ó¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-        if( child != null )
+        if (child != null)
         {
-            // »ñÈ¡×Ó¶ÔÏóµÄ Renderer ×é¼þ
+            // ï¿½ï¿½È¡ï¿½Ó¶ï¿½ï¿½ï¿½ï¿½ Renderer ï¿½ï¿½ï¿½
             Renderer renderer = child.GetComponent<Renderer>();
 
-            if( renderer != null )
+            if (renderer != null)
             {
-                // ¸ü¸ÄÑÕÉ«
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«
                 renderer.material.color = selfColor;
             }
         }
 
-        if( selfColor == Color.white )
-            gameObject.layer = LayerMask.NameToLayer( "Default" );
-        else if( selfColor == Color.red )
-            gameObject.layer = LayerMask.NameToLayer( "Red Layer" );
-        else if( selfColor == Color.green )
-            gameObject.layer = LayerMask.NameToLayer( "Green Layer" );
-        else if( selfColor == Color.blue )
-            gameObject.layer = LayerMask.NameToLayer( "Blue Layer" );
+        if (selfColor == Color.white)
+            gameObject.layer = LayerMask.NameToLayer("Default");
+        else if (selfColor == Color.red)
+            gameObject.layer = LayerMask.NameToLayer("Red Layer");
+        else if (selfColor == Color.green)
+            gameObject.layer = LayerMask.NameToLayer("Green Layer");
+        else if (selfColor == Color.blue)
+            gameObject.layer = LayerMask.NameToLayer("Blue Layer");
 
     }
 
