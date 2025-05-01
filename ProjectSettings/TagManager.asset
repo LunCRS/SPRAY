@@ -8,6 +8,9 @@ TagManager:
   - ColorBlock
   - Cam1
   - Cam2
+  - LaserTrigger
+  - lens
+  - mirror
   layers:
   - Default
   - TransparentFX
@@ -19,7 +22,7 @@ TagManager:
   - Red Layer
   - Green Layer
   - Blue Layer
-  - 
+  - Laser
   - 
   - 
   - 

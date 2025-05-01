@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class shoot_machine : MonoBehaviour
+public class ShootMachine : MonoBehaviour
 {
-    [SerializeField] private GameObject prefabBullet; // 子弹预制体
-    private Transform firePoint; // 发射点
+    [SerializeField] private GameObject prefabBullet;
+    private Transform firePoint; 
     [SerializeField] private Color bulletColor;
 
     void Start()
@@ -22,7 +22,6 @@ public class shoot_machine : MonoBehaviour
     {
         if (prefabBullet != null && firePoint != null)
         {
-            Debug.Log("shoot");
             CreateBullet(transform);
         }
     }

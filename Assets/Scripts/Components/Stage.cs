@@ -45,13 +45,13 @@ public class Stage : MonoBehaviour
             {
                 Debug.Log("Stage 2");
                 GameObject shoot_machine = machine_controller.GetLauncherForButton(gameObject);
-                shoot_machine.GetComponent<shoot_machine>().shoot();
+                shoot_machine.GetComponent<ShootMachine>().shoot();
             }
             else if (stageType == 3)
             {
                 Debug.Log("Stage 3");
                 GameObject move_machine = machine_controller.GetLauncherForButton(gameObject);
-                move_machine.GetComponent<move_machine>().move();
+                move_machine.GetComponent<MoveMachine>().move();
             }
         }
     }

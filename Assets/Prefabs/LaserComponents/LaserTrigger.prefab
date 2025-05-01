@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9113384660038017862}
   - component: {fileID: 4684188490762436485}
   m_Layer: 10
-  m_Name: layertrigger
+  m_Name: LaserTrigger
   m_TagString: LaserTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

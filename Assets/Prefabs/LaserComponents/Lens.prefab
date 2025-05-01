@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 281229392911481371}
   - component: {fileID: 1636827981560749790}
   m_Layer: 11
-  m_Name: lens
+  m_Name: Lens
   m_TagString: lens
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,7 +229,7 @@ MonoBehaviour:
   maxDistance: 20
   combinedLayers:
     serializedVersion: 2
-    m_Bits: 7168
+    m_Bits: 1024
   lineRenderer: {fileID: 4375049895290691037}
   hitEffect: {fileID: 0}
   defaultColor: {r: 0, g: 0.19745636, b: 1, a: 1}

@@ -31,7 +31,7 @@ public class EmitterController : MonoBehaviour
         Collider[] lenses = GameObject.FindGameObjectsWithTag("lens").Select(go => go.GetComponent<Collider>()).ToArray();
         foreach (var lens in lenses)
         {
-            lens.GetComponent<lens>().SetIsHitLen(false);
+            lens.GetComponent<LensEmitter>().SetIsHitLen(false);
         }
     }
     void ResetHit_mirror()
@@ -40,7 +40,7 @@ public class EmitterController : MonoBehaviour
         Collider[] mirrors = GameObject.FindGameObjectsWithTag("mirror").Select(go => go.GetComponent<Collider>()).ToArray();
         foreach (var mirror in mirrors)
         {
-            mirror.GetComponent<mirror>().SetIsHitMirror(false);
+            mirror.GetComponent<MirrorEmitter>().SetIsHitMirror(false);
         }
     }
 }

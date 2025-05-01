@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class mirror : MonoBehaviour
+public class MirrorEmitter : MonoBehaviour
 {
 
     public float maxDistance = 20f;
@@ -79,15 +79,15 @@ public class mirror : MonoBehaviour
 
         if (ishit_mirror && isHit && hit.collider.CompareTag("lens"))
         {
-            hit.collider.GetComponent<lens>().SetIsHitLen(true);
+            hit.collider.GetComponent<LensEmitter>().SetIsHitLen(true);
         }
         if (ishit_mirror && isHit && hit.collider.CompareTag("mirror"))
         {
             Vector3 reflectionDirection = Vector3.Reflect(transform.forward, hit.normal);
-            hit.collider.GetComponent<mirror>().SetIsHitMirror(true);
-            hit.collider.GetComponent<mirror>().reflection = reflectionDirection;
-            hit.collider.GetComponent<mirror>().currentColor = defaultColor;
-            hit.collider.GetComponent<mirror>().reflectionhitPoint = hit.point;
+            hit.collider.GetComponent<MirrorEmitter>().SetIsHitMirror(true);
+            hit.collider.GetComponent<MirrorEmitter>().reflection = reflectionDirection;
+            hit.collider.GetComponent<MirrorEmitter>().currentColor = defaultColor;
+            hit.collider.GetComponent<MirrorEmitter>().reflectionhitPoint = hit.point;
 
         }
 

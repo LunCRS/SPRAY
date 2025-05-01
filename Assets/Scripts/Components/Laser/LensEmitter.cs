@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class lens : MonoBehaviour
+public class LensEmitter : MonoBehaviour
 {
 
     public float maxDistance = 20f;
@@ -64,7 +64,7 @@ public class lens : MonoBehaviour
         {
             lineRenderer.positionCount = 0;
         }
-        // 设置基础颜色
+
         currentColor = objectRenderer.material.color;
         lineRenderer.startColor = currentColor;
         lineRenderer.endColor = currentColor;
@@ -79,15 +79,15 @@ public class lens : MonoBehaviour
 
         if (ishit_lens && isHit && hit.collider.CompareTag("lens"))
         {
-            hit.collider.GetComponent<lens>().SetIsHitLen(true);
+            hit.collider.GetComponent<LensEmitter>().SetIsHitLen(true);
         }
         if (ishit_lens && isHit && hit.collider.CompareTag("mirror"))
         {
             Vector3 reflectionDirection = Vector3.Reflect(transform.forward, hit.normal);
-            hit.collider.GetComponent<mirror>().SetIsHitMirror(true);
-            hit.collider.GetComponent<mirror>().reflection = reflectionDirection;
-            hit.collider.GetComponent<mirror>().currentColor = defaultColor;
-            hit.collider.GetComponent<mirror>().reflectionhitPoint = hit.point;
+            hit.collider.GetComponent<MirrorEmitter>().SetIsHitMirror(true);
+            hit.collider.GetComponent<MirrorEmitter>().reflection = reflectionDirection;
+            hit.collider.GetComponent<MirrorEmitter>().currentColor = defaultColor;
+            hit.collider.GetComponent<MirrorEmitter>().reflectionhitPoint = hit.point;
 
         }
 

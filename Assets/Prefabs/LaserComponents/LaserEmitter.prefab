@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3789182116711875262}
   - component: {fileID: 7122067852841498790}
   m_Layer: 0
-  m_Name: layeremitter
+  m_Name: LaserEmitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,19 +120,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 20
-  triggerLayer:
-    serializedVersion: 2
-    m_Bits: 0
   combinedLayers:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
   lineRenderer: {fileID: 7122067852841498790}
   hitEffect: {fileID: 0}
   defaultColor: {r: 1, g: 0, b: 0, a: 1}
-  laserPrefab: {fileID: 991963321755880864, guid: 1dc738e3bc05312419d776f76f678f7d, type: 3}
-  lensColors:
-  - {r: 0, g: 0.11674595, b: 1, a: 0}
-  newLaserDuration: 2
 --- !u!120 &7122067852841498790
 LineRenderer:
   serializedVersion: 2

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 32830662616672314}
   - component: {fileID: 1398188164020163747}
   m_Layer: 9
-  m_Name: shootmachine
+  m_Name: ShootMachine
   m_TagString: ColorBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
