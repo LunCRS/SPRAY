@@ -5,17 +5,30 @@ using UnityEngine.UI;
 
 public class Crosshair : MonoBehaviour
 {
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private Transform player;
+    [SerializeField] private Transform cam;
+    [SerializeField] private Vector3 cameraOffset;
     [SerializeField] private RectTransform crosshair;
     [SerializeField] private Vector2 screenEdgeOffset;
+    [SerializeField] private float moveScale = 5.0f;
 
     void Start ()
     {
         UpdateCrosshairPosition();
+
+        cameraOffset = cam.position - player.position;
+        cameraOffset = player.InverseTransformDirection( cameraOffset );
     }
 
     void Update ()
     {
         UpdateCrosshairPosition();
+
+        
+        Vector3 currentOffset = player.InverseTransformDirection( cam.position - player.position ) - cameraOffset;
+        
+        crosshair.anchoredPosition = new Vector2( currentOffset.x,currentOffset.y ) * moveScale + crosshair.anchoredPosition;
     }
 
 

@@ -28,7 +28,7 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         CameraInitialize();
-        // 为每个虚拟相机创建驱动
+        
         _driver1 = gameObject.AddComponent<VirtualCameraToCamera>();
         _driver1.vcam = leftVcam;
         _driver1.targetCamera = leftCam;
@@ -43,9 +43,6 @@ public class CameraController : MonoBehaviour
     {
         leftCam.rect = leftCameraViewport;
         rightCam.rect = rightCameraViewport;
-
-        //leftBrain = leftCam.GetComponent<CinemachineBrain>();
-        //rightBrain = rightCam.GetComponent<CinemachineBrain>();
 
         leftVcam.Priority = 10;
         rightVcam.Priority = 10;

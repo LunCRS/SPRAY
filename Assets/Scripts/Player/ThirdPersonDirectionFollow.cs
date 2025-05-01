@@ -9,11 +9,6 @@ public class ThirdPersonDirectionFollow : MonoBehaviour
     [SerializeField] private int playerID;
     void Start()
     {
-        //if( mainCamera == null )
-        //{
-        //    mainCamera = GameObject.FindGameObjectWithTag( "MainCamera" );
-        //}
-
         if( playerID == 1 )
             mainCamera = GameObject.FindGameObjectWithTag( "Cam1" );
         else
