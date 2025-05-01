@@ -14,7 +14,7 @@ public class PlayerControl : MonoBehaviour
 
     public int playerID;
 
-    [Header( "Shoot info")]
+    [Header("Shoot info")]
     public Color selfColor;
     [SerializeField] private Color bulletColor;
     [SerializeField] private GameObject prefabBullet;
