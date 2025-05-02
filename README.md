@@ -64,7 +64,11 @@ git clone trash0gitea:aMbZfcaYn/2025CUSGA.git
 ```git
 git add .
 git commit -m "commit标题信息" -m "commit补充信息" -m "补充信息" ...
-git push origin main
+```
+
+推送到服务器：
+```git
+git push origin 分支名
 ```
 
 同步：
@@ -73,7 +77,31 @@ git pull
 ```
 pull之前需要commit你的所有修改。
 
-### 4. 其他操作
+### 4. branch操作
+
+创建新分支，并立即切换到该分支。同时设置本地分支跟踪远端分支。：
+```git
+git checkout -b 分支名
+git push -u origin 分支名  这一条只需要在这里执行一次
+```
+
+分支内提交如 `3.` 所述
+
+推送到服务器对应分支 如 `3.` 所述，分支名改为你要推送到的分支名
+
+把分支B的内容合并到分支A
+```git
+git checkout 分支A
+git merge --no-ff --no-commit 分支B
+```
+如果一切正常：
+```git
+git commit -m "merge: 对应的信息"
+git push origin 分支A
+```
+如果出现冲突，请咨询主程。
+
+### 5. 其他实用操作
 
 强制覆盖本地：
 ```git
