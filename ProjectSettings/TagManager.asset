@@ -11,6 +11,7 @@ TagManager:
   - LaserTrigger
   - lens
   - mirror
+  - Enemy
   layers:
   - Default
   - TransparentFX
