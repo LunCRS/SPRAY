@@ -53,18 +53,22 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-        if( move != Vector2.zero )
+        if(IsGrounded())
         {
-            Vector3 inputDir = new Vector3( move.x,0.0f,move.y ).normalized;
-            targetRotation = Mathf.Atan2( inputDir.x,inputDir.z ) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
-            targetDir = Quaternion.Euler( 0.0f,targetRotation,0.0f ) * Vector3.forward;
+            if( move != Vector2.zero )
+            {
+                Vector3 inputDir = new Vector3( move.x,0.0f,move.y ).normalized;
+                targetRotation = Mathf.Atan2( inputDir.x,inputDir.z ) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
+                targetDir = Quaternion.Euler( 0.0f,targetRotation,0.0f ) * Vector3.forward;
 
-            rb.velocity = new Vector3( moveSpeed * targetDir.x,rb.velocity.y,moveSpeed * targetDir.z );
+                rb.velocity = new Vector3( moveSpeed * targetDir.x,rb.velocity.y,moveSpeed * targetDir.z );
+            }
+            else
+            {
+                rb.velocity = new Vector3( 0f,rb.velocity.y,0f );
+            }
         }
-        else
-        {
-            rb.velocity = new Vector3( 0f,rb.velocity.y,0f );
-        }
+
 
         FireUpdate();
     }

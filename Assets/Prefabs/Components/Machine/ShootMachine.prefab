@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6173223556615335917}
   - component: {fileID: 5806882703491385733}
   - component: {fileID: 8198169697192765493}
-  - component: {fileID: 32830662616672314}
+  - component: {fileID: 2221541156949243484}
   - component: {fileID: 1398188164020163747}
   m_Layer: 9
   m_Name: ShootMachine
@@ -107,7 +107,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &32830662616672314
+--- !u!114 &2221541156949243484
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,11 +116,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7058000656365173589}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e5ea9a9f26b05b459ce9fb3500b7263, type: 3}
+  m_Script: {fileID: 11500000, guid: 113063edfb2b29946bb577e539d2fbf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prefabBullet: {fileID: 8015621632297570490, guid: b99335c9d25a72648b4e9471e46f23fc, type: 3}
-  bulletColor: {r: 0, g: 0, b: 1, a: 0}
+  bulletColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1398188164020163747
 MonoBehaviour:
   m_ObjectHideFlags: 0
