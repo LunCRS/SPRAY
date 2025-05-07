@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class ShootMachine : MonoBehaviour
 {
+
     [SerializeField] private GameObject prefabBullet;
-    private Transform firePoint; 
     [SerializeField] private Color bulletColor;
+    private Transform firePoint;
+    [SerializeField] private float fireRate = 0.5f;
+    private float fireTimer = 0f;
 
     void Start()
     {
@@ -15,7 +18,12 @@ public class ShootMachine : MonoBehaviour
 
     void Update()
     {
-
+        fireTimer += Time.deltaTime;
+        if(fireTimer >= 0 )
+        {
+            shoot();
+            fireTimer = -fireRate;
+        }
     }
 
     public void shoot()

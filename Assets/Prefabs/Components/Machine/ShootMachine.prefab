@@ -130,7 +130,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7058000656365173589}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ed1c056d69ab274a966aaf97cb86a27, type: 3}
+  m_Script: {fileID: 11500000, guid: 9917203ffd669414b92e4907c8ce7330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originColor: {r: 0, g: 0, b: 1, a: 1}
+  originColor: {r: 1, g: 1, b: 1, a: 1}

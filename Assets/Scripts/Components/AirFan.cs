@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AirFan : MonoBehaviour
 {
+    private Renderer rend;
+
     public float power = 1.0f;
     public float playerMultiplier = 1.0f;
     public float bulletMultiplier = 4.0f;
@@ -14,6 +16,10 @@ public class AirFan : MonoBehaviour
     void Start()
     {
         worldDirection = transform.TransformDirection(direction).normalized;
+
+        rend = GetComponent<Renderer>();
+
+        rend.material.color = Color.gray;
     }
 
     void FixedUpdate()

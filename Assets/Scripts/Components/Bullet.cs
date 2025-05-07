@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public Color selfColor;
+
     private Rigidbody rb;
     private Transform trans;
     private Renderer rend;
@@ -13,8 +15,6 @@ public class Bullet : MonoBehaviour
     [SerializeField] private Vector3 direction;
     [SerializeField] private float speed = 114f;
     [SerializeField] private float lifeTime = 5f;
-
-    public Color selfColor; // 修改为 public
 
     private bool isDestroyed = false;
     public int bullet_type;
@@ -62,13 +62,15 @@ public class Bullet : MonoBehaviour
     {
         if (collider.CompareTag("ColorBlock") || collider.CompareTag("lens"))
         {
-            Debug.Log("111111");
-            Obstacle obstacle = collider.GetComponent<Obstacle>();
-            if (obstacle != null)
+            ColorBlock colorBlock = collider.GetComponent<ColorBlock>();
+            if (colorBlock != null)
             {
-                obstacle.ChangeColor(selfColor);
+                colorBlock.ChangeColor(selfColor);
                 isDestroyed = true;
             }
         }
+        else if(collider.CompareTag("Ground"))
+            isDestroyed = true;
+
     }
 }

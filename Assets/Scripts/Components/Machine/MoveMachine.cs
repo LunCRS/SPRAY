@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MoveMachine : MonoBehaviour
 {
+    private Renderer rend;
+
     public Vector3 movement;
     public float distance = 1f;
     public float speed = 0.1f;
@@ -17,6 +19,10 @@ public class MoveMachine : MonoBehaviour
     {
         startPosition = transform.position;
         targetPosition = transform.position + movement * distance;
+
+        rend = GetComponent<Renderer>();
+
+        rend.material.color = Color.black;
     }
 
     public void move()

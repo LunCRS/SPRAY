@@ -12,6 +12,7 @@ TagManager:
   - lens
   - mirror
   - Enemy
+  - Ground
   layers:
   - Default
   - TransparentFX
