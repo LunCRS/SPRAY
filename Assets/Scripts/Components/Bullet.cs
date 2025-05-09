@@ -13,7 +13,8 @@ public class Bullet : MonoBehaviour
 
     private float lifeTimer = 0f;
     [SerializeField] private Vector3 direction;
-    [SerializeField] private float speed = 114f;
+    public float speed = 114f;
+    public bool useGravity = true;
     [SerializeField] private float lifeTime = 5f;
 
     private bool isDestroyed = false;
@@ -31,6 +32,8 @@ public class Bullet : MonoBehaviour
         rb.velocity = new Vector3(direction.x * speed, direction.y * speed, direction.z * speed);
 
         SetBulletColor();
+
+        rb.useGravity = useGravity;
     }
 
     void Update()

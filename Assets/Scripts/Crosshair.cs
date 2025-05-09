@@ -15,22 +15,18 @@ public class Crosshair : MonoBehaviour
 
     void Start ()
     {
-        UpdateCrosshairPosition();
-
-        cameraOffset = cam.position - player.position;
-        cameraOffset = player.InverseTransformDirection( cameraOffset );
+        StartCoroutine( LateStart( 1.0f ) );
     }
 
     void Update ()
     {
         UpdateCrosshairPosition();
 
-        
+
         Vector3 currentOffset = player.InverseTransformDirection( cam.position - player.position ) - cameraOffset;
         
         crosshair.anchoredPosition = new Vector2( currentOffset.x,currentOffset.y ) * moveScale + crosshair.anchoredPosition;
     }
-
 
     void UpdateCrosshairPosition ()
     {
@@ -42,5 +38,16 @@ public class Crosshair : MonoBehaviour
         Vector2 screenPos = new Vector2(viewportPos.x * screenWidth - screenWidth / 2,viewportPos.y * screenHeight - screenHeight / 2);
 
         crosshair.anchoredPosition = screenPos;
+    }
+
+    public IEnumerator LateStart ( float _seconds )
+    {
+
+        yield return new WaitForSeconds( _seconds );
+
+        UpdateCrosshairPosition();
+
+        cameraOffset = cam.position - player.position;
+        cameraOffset = player.InverseTransformDirection( cameraOffset );
     }
 }

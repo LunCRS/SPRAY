@@ -7,9 +7,12 @@ public class ShootMachine : MonoBehaviour
 
     [SerializeField] private GameObject prefabBullet;
     [SerializeField] private Color bulletColor;
-    private Transform firePoint;
     [SerializeField] private float fireRate = 0.5f;
+    [SerializeField] private float bulletSpeed = 114f;
+    [SerializeField] private bool bulletGravity = true;
     private float fireTimer = 0f;
+
+    private Transform firePoint;
 
     void Start()
     {
@@ -37,6 +40,11 @@ public class ShootMachine : MonoBehaviour
     private void CreateBullet(Transform transform)
     {
         GameObject bullet = Instantiate(prefabBullet, transform.position, transform.rotation);
+
+        Bullet bul = bullet.GetComponent<Bullet>();
+        bul.speed = bulletSpeed;
+        bul.useGravity = bulletGravity;
+
         SetBulletColor(GetComponent<Renderer>().material.color);
         if (bulletColor == Color.white)
             bullet.layer = LayerMask.NameToLayer("Default");

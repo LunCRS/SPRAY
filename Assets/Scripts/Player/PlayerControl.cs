@@ -33,6 +33,9 @@ public class PlayerControl : MonoBehaviour
     private Vector3 targetDir;
     private float targetRotation = 0.0f;
 
+    [Header( "Dead info" )]
+    public Transform birthPlace;
+    public bool isDead = false;
 
     void Start()
     {
@@ -55,6 +58,14 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
+        if(isDead)
+        {
+            return;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Tab))
+            isDead = true;
+
         if( move != Vector2.zero )
         {
             Vector3 inputDir = new Vector3( move.x,0.0f,move.y ).normalized;

@@ -6,7 +6,7 @@ public class ColorBlock : MonoBehaviour
 {
     private Renderer rend;
     [SerializeField] private Color originColor = Color.blue;
-
+    [SerializeField] private bool canBeChanged = true;
 
     void Start()
     {
@@ -22,6 +22,9 @@ public class ColorBlock : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer( "Green Layer" );
         else if( originColor == Color.blue )
             gameObject.layer = LayerMask.NameToLayer( "Blue Layer" );
+
+        if( !canBeChanged )
+            gameObject.tag = "Untagged";
     }
 
     public void ChangeColor(Color color)
