@@ -18,8 +18,6 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float lifeTime = 5f;
 
     private bool isDestroyed = false;
-    public int bullet_type;
-    public int bullet_color;
 
     void Start()
     {
