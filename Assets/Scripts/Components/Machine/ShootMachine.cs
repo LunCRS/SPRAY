@@ -10,6 +10,7 @@ public class ShootMachine : MonoBehaviour
     [SerializeField] private float fireRate = 0.5f;
     [SerializeField] private float bulletSpeed = 114f;
     [SerializeField] private bool bulletGravity = true;
+    [SerializeField] private bool haveStage = false;
     private float fireTimer = 0f;
 
     private Transform firePoint;
@@ -21,8 +22,14 @@ public class ShootMachine : MonoBehaviour
 
     void Update()
     {
+        if(!haveStage)
+            CheckForShoot();
+    }
+
+    public void CheckForShoot ()
+    {
         fireTimer += Time.deltaTime;
-        if(fireTimer >= 0 )
+        if( fireTimer >= 0 )
         {
             shoot();
             fireTimer = -fireRate;
