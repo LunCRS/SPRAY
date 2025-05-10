@@ -161,6 +161,9 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+# Self Edited
+*.vsconfig
+
 # ---> Vim
 # Swap
 [._]*.s[a-v][a-z]
@@ -258,7 +261,7 @@ StyleCopReport.xml
 *_p.c
 *_h.h
 *.ilk
-*.meta
+#*.meta Unity Need This.
 *.obj
 *.iobj
 *.pch
@@ -565,10 +568,10 @@ FodyWeavers.xsd
 
 # VS Code files for those working on multiple tools
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+#!.vscode/settings.json
+#!.vscode/tasks.json
+#!.vscode/launch.json
+#!.vscode/extensions.json
 *.code-workspace
 
 # Local History for Visual Studio Code
