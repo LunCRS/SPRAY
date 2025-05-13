@@ -3,56 +3,110 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class Enemy: MonoBehaviour
 {
     public GameObject[] preferTargets;
     public Transform[] patrolPoints;
     public int patrolIndex = 0; // Index of the current patrol point
     private NavMeshAgent agent;
-    public double huntDistance = 10;
+    public float movespeed = 3.5f;
+    public float huntDistance = 10f;
     //public string enemyType;
     //public string enemyName; // Never trust this
     public int volume;  // Default volume was set with type
     public int volumeToDie; // Default volume to die was set with type
+    public Color enemyColor; // Default color was set with type
+    public float knockbackforce = 5f; // Default knockback force was set with type
+    private Renderer enemyRenderer; // Renderer component of the enemy
 
-    void Start()
+    private void UpdateSize ()
+    {
+        // Calculate the scale based on the volume
+        transform.localScale = Vector3.one * volume * 0.5f;
+    }
+
+    void Start ()
     {
         // Initialize the NavMeshAgent component
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = movespeed;
         agent.autoBraking = false; // Disable auto-braking to allow continuous movement
+        enemyRenderer = GetComponent<Renderer>(); // Get the Renderer component of the enemy
+        enemyRenderer.material.color = enemyColor; // Set the color
+
+        UpdateSize();
 
         GotoNextPoint();
     }
 
-    void GotoNextPoint()
+    void GotoNextPoint ()
     {
         // If no patrol points are set, return
-        if (patrolPoints.Length == 0)
+        if( patrolPoints.Length == 0 )
             return;
         // Set the agent to go to the currently selected patrol point
         agent.destination = patrolPoints[patrolIndex].position;
         // Choose the next patrol point in the array
-        patrolIndex = (patrolIndex + 1) % patrolPoints.Length;
+        patrolIndex = ( patrolIndex + 1 ) % patrolPoints.Length;
     }
 
     // Update is called once per frame
-    private void Update()
+    private void Update ()
     {
-        foreach(var p in preferTargets)
+        foreach( var p in preferTargets )
         {
-            if (p == null)
+            if( p == null )
                 continue;
-            // Check if the target is within the hunt distance
-            if (Vector3.Distance(transform.position, p.transform.position) < huntDistance)
+            PlayerControl player = p.GetComponent<PlayerControl>();
+            if( player != null )
             {
-                agent.destination = p.transform.position;
-                return; // Exit the method to prevent going to patrol points
+                Color playerColor = player.selfColor;
+                // Check if the target is within the hunt distance
+                if( Vector3.Distance( transform.position,p.transform.position ) < huntDistance && playerColor != enemyColor )
+                {
+                    agent.destination = p.transform.position;
+                    return; // Exit the method to prevent going to patrol points
+                }
             }
         }
 
-        if (!agent.pathPending && agent.remainingDistance < 0.5f) 
+        if( !agent.pathPending && agent.remainingDistance < 0.5f )
         {
             GotoNextPoint();
+        }
+    }
+
+    private void OnTriggerEnter ( Collider other )
+    {
+        if( other.CompareTag( "Bullet" ) )
+        {
+            Bullet bullet = other.GetComponent<Bullet>();
+            if( bullet != null )
+            {
+                if( bullet.selfColor == enemyColor )
+                {
+                    volume++;
+                    UpdateSize();
+                    if( volume >= volumeToDie )
+                    {
+                        gameObject.SetActive( false );
+                    }
+                }
+                else
+                {
+                    Vector3 knockbackDirection = bullet.bulletDirection;
+                    agent.velocity = knockbackDirection * knockbackforce;
+                }
+                Destroy( other.gameObject );
+            }
+        }
+        if(other.CompareTag( "Player" ))
+        {
+            PlayerControl player = other.GetComponent<PlayerControl>();
+            if( player != null )
+            {
+                player.isDead = true;
+            }
         }
     }
 

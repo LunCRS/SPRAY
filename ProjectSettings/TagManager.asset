@@ -15,6 +15,9 @@ TagManager:
   - Ground
   - trigger_long
   - Bullettrigger
+  - DeadZone
+  - TargetSwitch
+  - Target
   layers:
   - Default
   - TransparentFX
@@ -27,7 +30,7 @@ TagManager:
   - Green Layer
   - Blue Layer
   - Laser
-  - 
+  - DeadZone
   - 
   - 
   - 

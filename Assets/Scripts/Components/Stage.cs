@@ -52,7 +52,7 @@ public class Stage : MonoBehaviour
             else if (stageType == 2)
             {
                 GameObject shoot_machine = machine_controller.GetLauncherForButton(gameObject);
-                shoot_machine.GetComponent<ShootMachine>().shoot();
+                shoot_machine.GetComponent<ShootMachine>().CheckForShoot();
             }
             else if (stageType == 3)
             {

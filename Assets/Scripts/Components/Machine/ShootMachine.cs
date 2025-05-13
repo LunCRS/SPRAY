@@ -7,9 +7,14 @@ public class ShootMachine : MonoBehaviour
 
     [SerializeField] private GameObject prefabBullet;
     [SerializeField] private Color bulletColor;
-    private Transform firePoint;
     [SerializeField] private float fireRate = 0.5f;
+    [SerializeField] private float bulletSpeed = 114f;
+    [SerializeField] private float bulletLifeTime = 5f;
+    [SerializeField] private bool bulletGravity = true;
+    [SerializeField] private bool haveStage = false;
     private float fireTimer = 0f;
+
+    private Transform firePoint;
 
     void Start()
     {
@@ -18,8 +23,14 @@ public class ShootMachine : MonoBehaviour
 
     void Update()
     {
+        if(!haveStage)
+            CheckForShoot();
+    }
+
+    public void CheckForShoot ()
+    {
         fireTimer += Time.deltaTime;
-        if(fireTimer >= 0 )
+        if( fireTimer >= 0 )
         {
             shoot();
             fireTimer = -fireRate;
@@ -37,6 +48,12 @@ public class ShootMachine : MonoBehaviour
     private void CreateBullet(Transform transform)
     {
         GameObject bullet = Instantiate(prefabBullet, transform.position, transform.rotation);
+
+        Bullet bul = bullet.GetComponent<Bullet>();
+        bul.speed = bulletSpeed;
+        bul.lifeTime = bulletLifeTime;
+        bul.useGravity = bulletGravity;
+
         SetBulletColor(GetComponent<Renderer>().material.color);
         if (bulletColor == Color.white)
             bullet.layer = LayerMask.NameToLayer("Default");

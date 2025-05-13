@@ -12,13 +12,12 @@ public class Bullet : MonoBehaviour
     private Renderer rend;
 
     private float lifeTimer = 0f;
-    [SerializeField] private Vector3 direction;
-    [SerializeField] private float speed = 114f;
-    [SerializeField] private float lifeTime = 5f;
+    public Vector3 bulletDirection;
+    public float speed = 114f;
+    public bool useGravity = true;
+    public float lifeTime = 5f;
 
     private bool isDestroyed = false;
-    public int bullet_type;
-    public int bullet_color;
 
     void Start()
     {
@@ -26,11 +25,13 @@ public class Bullet : MonoBehaviour
         trans = GetComponent<Transform>();
         rend = GetComponentInChildren<Renderer>();
 
-        direction = trans.forward;
+        bulletDirection = trans.forward;
 
-        rb.velocity = new Vector3(direction.x * speed, direction.y * speed, direction.z * speed);
+        rb.velocity = new Vector3(bulletDirection.x * speed, bulletDirection.y * speed, bulletDirection.z * speed);
 
         SetBulletColor();
+
+        rb.useGravity = useGravity;
     }
 
     void Update()
@@ -69,8 +70,7 @@ public class Bullet : MonoBehaviour
                 isDestroyed = true;
             }
         }
-        else if (collider.CompareTag("Ground"))
-            isDestroyed = true;
+
         else if (collider.CompareTag("Bullettrigger"))
         {
             isDestroyed = true;
@@ -103,5 +103,16 @@ public class Bullet : MonoBehaviour
         }
 
 
+        else if (collider.CompareTag("Ground"))
+            isDestroyed = true;
+        else if (collider.CompareTag("Target"))
+        {
+            Target target = collider.GetComponent<Target>();
+            if (target != null)
+            {
+                target.SetActive();
+                isDestroyed = true;
+            }
+        }
     }
 }

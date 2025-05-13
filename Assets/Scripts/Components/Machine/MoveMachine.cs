@@ -14,7 +14,10 @@ public class MoveMachine : MonoBehaviour
     private Vector3 targetPosition;
     private bool isMoving = false;
     private bool movingToTarget = true;
-    public bool returnToStart = true;
+
+    [SerializeField] private bool shouldReturn = true;
+    [SerializeField] private Color color = Color.black;
+
     void Start()
     {
         startPosition = transform.position;
@@ -22,7 +25,7 @@ public class MoveMachine : MonoBehaviour
 
         rend = GetComponent<Renderer>();
 
-        rend.material.color = Color.black;
+        rend.material.color = color;
     }
 
     public void move()
@@ -41,7 +44,9 @@ public class MoveMachine : MonoBehaviour
 
         if (transform.position == destination)
         {
-            if (!returnToStart)
+            if (!shouldReturn)
+                gameObject.SetActive(false);
+            if (movingToTarget)
             {
                 movingToTarget = true;
             }
