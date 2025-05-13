@@ -26,16 +26,22 @@ public class PlayerControl : MonoBehaviour
 
     [Header("Move info")]
     [SerializeField] private float moveSpeed = 6.0f;
-    [SerializeField] private float jumpForce = 5.0f;
-    [SerializeField] private float groundCheckDis = 0.1f;
-    [SerializeField] private LayerMask whatIsGround;
     private Vector2 move;
     private Vector3 targetDir;
     private float targetRotation = 0.0f;
 
+    [Header( "Jump info" )]
+    [SerializeField] private float jumpForce = 5.0f;
+    [SerializeField] private float groundCheckDis = .1f;
+    [SerializeField] private float coyoteTime = .2f;
+    private float coyoteTimer;
+    private bool canJump = true;
+    private bool isJumping = false;
+
     [Header( "Dead info" )]
     public Transform birthPlace;
     public bool isDead = false;
+    private Transform standOnDetect;
 
     void Start()
     {
@@ -49,6 +55,7 @@ public class PlayerControl : MonoBehaviour
         rend = GetComponentInChildren<Renderer>();
         inputActionAsset = GetComponent<PlayerInput>().actions;
         fireAction = inputActionAsset.FindAction( "Fire" );
+        coyoteTimer = coyoteTime;
 
         rend.material.color = selfColor;
 
@@ -58,13 +65,10 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-        if(isDead)
+        if( isDead )
         {
-            return;
+            rb.velocity = Vector3.zero;
         }
-
-        if(Input.GetKeyDown(KeyCode.Tab))
-            isDead = true;
 
         if( move != Vector2.zero )
         {
@@ -79,7 +83,7 @@ public class PlayerControl : MonoBehaviour
             rb.velocity = new Vector3( 0f,rb.velocity.y,0f );
         }
 
-
+        JumpCheck();
         FireUpdate();
     }
 
@@ -93,6 +97,7 @@ public class PlayerControl : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine( transform.position,new Vector3(transform.position.x, transform.position.y - groundCheckDis, transform.position.z) );
+
     }
     private bool IsGrounded ()
     {
@@ -103,10 +108,28 @@ public class PlayerControl : MonoBehaviour
 
         return false;
     }
+    private void JumpCheck ()
+    {
+        if( IsGrounded() && rb.velocity.y <= 0)
+        {
+            coyoteTimer = coyoteTime;
+            canJump = true;
+            isJumping = false;
+        }
+        else
+        {
+            coyoteTimer -= Time.deltaTime;
+            if( coyoteTimer <= 0 )
+                canJump = false;
+        }
+    }
     void OnJump(InputValue value)
     {
-        if(IsGrounded())
+        if(canJump && !isJumping)
+        {
             rb.velocity = new Vector3( rb.velocity.x,jumpForce,rb.velocity.z );
+            isJumping = true;
+        }
     }
 
     void OnFire ( InputValue value )
@@ -172,4 +195,13 @@ public class PlayerControl : MonoBehaviour
         bulletColor = color;
     }
 
+    public void PositionLock()
+    {
+        rb.velocity = Vector3.zero;
+    }
+
+    public void ChangeMoveSpeed ( float speed)
+    {
+        moveSpeed += speed;
+    }
 }

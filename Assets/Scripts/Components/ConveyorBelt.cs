@@ -9,6 +9,7 @@ public class ConveyorBelt : MonoBehaviour
     private Vector3 worldDirection;
     private Rigidbody affectedRb;
     private Vector3 ConveyorVelocity;
+    private Renderer rend;
 
     void Start()
     {

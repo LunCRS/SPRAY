@@ -14,6 +14,8 @@ TagManager:
   - Enemy
   - Ground
   - DeadZone
+  - TargetSwitch
+  - Target
   layers:
   - Default
   - TransparentFX
@@ -26,7 +28,7 @@ TagManager:
   - Green Layer
   - Blue Layer
   - Laser
-  - 
+  - DeadZone
   - 
   - 
   - 

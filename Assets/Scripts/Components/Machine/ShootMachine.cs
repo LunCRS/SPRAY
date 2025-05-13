@@ -9,6 +9,7 @@ public class ShootMachine : MonoBehaviour
     [SerializeField] private Color bulletColor;
     [SerializeField] private float fireRate = 0.5f;
     [SerializeField] private float bulletSpeed = 114f;
+    [SerializeField] private float bulletLifeTime = 5f;
     [SerializeField] private bool bulletGravity = true;
     [SerializeField] private bool haveStage = false;
     private float fireTimer = 0f;
@@ -50,6 +51,7 @@ public class ShootMachine : MonoBehaviour
 
         Bullet bul = bullet.GetComponent<Bullet>();
         bul.speed = bulletSpeed;
+        bul.lifeTime = bulletLifeTime;
         bul.useGravity = bulletGravity;
 
         SetBulletColor(GetComponent<Renderer>().material.color);

@@ -12,10 +12,10 @@ public class Bullet : MonoBehaviour
     private Renderer rend;
 
     private float lifeTimer = 0f;
-    [SerializeField] private Vector3 direction;
+    public Vector3 bulletDirection;
     public float speed = 114f;
     public bool useGravity = true;
-    [SerializeField] private float lifeTime = 5f;
+    public float lifeTime = 5f;
 
     private bool isDestroyed = false;
 
@@ -25,9 +25,9 @@ public class Bullet : MonoBehaviour
         trans = GetComponent<Transform>();
         rend = GetComponentInChildren<Renderer>();
 
-        direction = trans.forward;
+        bulletDirection = trans.forward;
 
-        rb.velocity = new Vector3(direction.x * speed, direction.y * speed, direction.z * speed);
+        rb.velocity = new Vector3(bulletDirection.x * speed, bulletDirection.y * speed, bulletDirection.z * speed);
 
         SetBulletColor();
 
@@ -59,19 +59,27 @@ public class Bullet : MonoBehaviour
         rend.material.color = selfColor;
     }
 
-    void OnTriggerEnter(Collider collider)
+    void OnTriggerEnter ( Collider collider )
     {
-        if (collider.CompareTag("ColorBlock") || collider.CompareTag("lens"))
+        if( collider.CompareTag( "ColorBlock" ) || collider.CompareTag( "lens" ) )
         {
             ColorBlock colorBlock = collider.GetComponent<ColorBlock>();
-            if (colorBlock != null)
+            if( colorBlock != null )
             {
-                colorBlock.ChangeColor(selfColor);
+                colorBlock.ChangeColor( selfColor );
                 isDestroyed = true;
             }
         }
-        else if(collider.CompareTag("Ground"))
+        else if( collider.CompareTag( "Ground" ) )
             isDestroyed = true;
-
+        else if( collider.CompareTag( "Target" ) )
+        {
+            Target target = collider.GetComponent<Target>();
+            if( target != null )
+            {
+                target.SetActive();
+                isDestroyed = true;
+            }
+        }
     }
 }
