@@ -5,7 +5,7 @@ using UnityEngine;
 public class ColorBlock : MonoBehaviour
 {
     private Renderer rend;
-    [SerializeField] private Color originColor = Color.blue;
+    public Color originColor;
 
 
     void Start()
@@ -14,14 +14,14 @@ public class ColorBlock : MonoBehaviour
 
         rend.material.color = originColor;
 
-        if( originColor == Color.white )
-            gameObject.layer = LayerMask.NameToLayer( "Default" );
-        else if( originColor == Color.red )
-            gameObject.layer = LayerMask.NameToLayer( "Red Layer" );
-        else if( originColor == Color.green )
-            gameObject.layer = LayerMask.NameToLayer( "Green Layer" );
-        else if( originColor == Color.blue )
-            gameObject.layer = LayerMask.NameToLayer( "Blue Layer" );
+        if (originColor == Color.white)
+            gameObject.layer = LayerMask.NameToLayer("Default");
+        else if (originColor == Color.red)
+            gameObject.layer = LayerMask.NameToLayer("Red Layer");
+        else if (originColor == Color.green)
+            gameObject.layer = LayerMask.NameToLayer("Green Layer");
+        else if (originColor == Color.blue)
+            gameObject.layer = LayerMask.NameToLayer("Blue Layer");
     }
 
     public void ChangeColor(Color color)

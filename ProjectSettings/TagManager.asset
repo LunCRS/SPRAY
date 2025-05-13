@@ -13,6 +13,8 @@ TagManager:
   - mirror
   - Enemy
   - Ground
+  - trigger_long
+  - Bullettrigger
   layers:
   - Default
   - TransparentFX

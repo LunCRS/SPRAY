@@ -14,7 +14,7 @@ public class MoveMachine : MonoBehaviour
     private Vector3 targetPosition;
     private bool isMoving = false;
     private bool movingToTarget = true;
-
+    public bool returnToStart = true;
     void Start()
     {
         startPosition = transform.position;
@@ -41,14 +41,22 @@ public class MoveMachine : MonoBehaviour
 
         if (transform.position == destination)
         {
-            if (movingToTarget)
+            if (!returnToStart)
             {
-                movingToTarget = false;
+                movingToTarget = true;
             }
             else
             {
-                isMoving = false;
+                if (movingToTarget)
+                {
+                    movingToTarget = false;
+                }
+                else
+                {
+                    isMoving = false;
+                }
             }
+
         }
     }
 }

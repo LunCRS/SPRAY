@@ -68,12 +68,14 @@ public class LaserEmitter : MonoBehaviour
     {
         if (isHit && hit.collider.CompareTag("LaserTrigger"))
         {
-            hit.collider.GetComponent<LaserTrigger>().Activate();
+            hit.collider.GetComponent<LaserTrigger>().Activate(defaultColor);
+            hit.collider.GetComponent<LaserTrigger>().hitcolor = defaultColor;
         }
 
         if (isHit && hit.collider.CompareTag("lens"))
         {
             hit.collider.GetComponent<LensEmitter>().SetIsHitLen(true);
+            hit.collider.GetComponent<LensEmitter>().hitColor = defaultColor;
         }
         if (isHit && hit.collider.CompareTag("mirror"))
         {

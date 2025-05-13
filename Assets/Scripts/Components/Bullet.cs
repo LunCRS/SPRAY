@@ -60,7 +60,7 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.CompareTag("ColorBlock") || collider.CompareTag("lens"))
+        if (collider.CompareTag("ColorBlock"))
         {
             ColorBlock colorBlock = collider.GetComponent<ColorBlock>();
             if (colorBlock != null)
@@ -69,8 +69,39 @@ public class Bullet : MonoBehaviour
                 isDestroyed = true;
             }
         }
-        else if(collider.CompareTag("Ground"))
+        else if (collider.CompareTag("Ground"))
             isDestroyed = true;
+        else if (collider.CompareTag("Bullettrigger"))
+        {
+            isDestroyed = true;
+        }
+        else if (collider.CompareTag("lens") || collider.CompareTag("mirror"))
+        {
+            lensrotation lensRotation = collider.GetComponent<lensrotation>();
+            EmitterController controller = GameObject.FindObjectOfType<EmitterController>();
+            bool allowed = lensRotation.allowed;
+
+            if (allowed && rend.material.color == Color.blue)
+            {
+                int direction = 1;
+                lensRotation.changerotation(direction);
+                controller.ResetHit_lens();
+                controller.ResetHit_mirror();
+            }
+            else if (allowed && rend.material.color == Color.red)
+            {
+                int direction = -1;
+                lensRotation.changerotation(direction);
+                controller.ResetHit_lens();
+                controller.ResetHit_mirror();
+            }
+            isDestroyed = true;
+        }
+        else if (collider.CompareTag("Bullettrigger"))
+        {
+            isDestroyed = true;
+        }
+
 
     }
 }
