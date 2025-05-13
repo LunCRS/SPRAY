@@ -640,6 +640,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 182fbf0305d208f42af15a989fc6b0c0, type: 3}
+--- !u!1 &454700981 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8729265735859349738, guid: 804d896ac0c3b1e47bd602718dd734f2, type: 3}
+  m_PrefabInstance: {fileID: 847059384}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &520066808
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1180,10 +1185,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -2993990037417713266, guid: b97823b2d2eb96b40ab171fe27970c27, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6150542913928620857, guid: b97823b2d2eb96b40ab171fe27970c27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1710047856}
     - targetCorrespondingSourceObject: {fileID: 6150542913928620857, guid: b97823b2d2eb96b40ab171fe27970c27, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1710047850}
@@ -2183,6 +2192,32 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1710047856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710047849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1648841803079b4f9f06e203f3c4c96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preferTargets:
+  - {fileID: 309208257}
+  - {fileID: 454700981}
+  patrolPoints:
+  - {fileID: 1019441411}
+  - {fileID: 2031571709}
+  - {fileID: 2130532541}
+  patrolIndex: 1
+  movespeed: 3.5
+  huntDistance: 10
+  volume: 3
+  volumeToDie: 6
+  enemyColor: {r: 0, g: 0, b: 1, a: 1}
+  knockbackforce: 5
 --- !u!4 &1713567798 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4902378291375005120, guid: 182fbf0305d208f42af15a989fc6b0c0, type: 3}
@@ -2595,6 +2630,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4902378291375005120, guid: 182fbf0305d208f42af15a989fc6b0c0, type: 3}
   m_PrefabInstance: {fileID: 865963308}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2130532541 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1541470385473621647, guid: 221c7e4669bc4f64b85d80fb26cf2ad4, type: 3}
+  m_PrefabInstance: {fileID: 1198289691}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7595381921940321183
 PrefabInstance:

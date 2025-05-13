@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1541470385473621647}
   - component: {fileID: 7961962192698956476}
-  - component: {fileID: 4419327282736840211}
+  - component: {fileID: 1425320841162859466}
   m_Layer: 0
   m_Name: ConveyorBelt
   m_TagString: ConveyorBlet
@@ -138,7 +138,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4419327282736840211
+--- !u!114 &1425320841162859466
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,7 +147,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8941155038676353659}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ed1c056d69ab274a966aaf97cb86a27, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ee18c68feed16845b73ae6417ac82ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originColor: {r: 1, g: 1, b: 1, a: 1}
+  speed: 5
+  direction: {x: 0, y: 0, z: 1}

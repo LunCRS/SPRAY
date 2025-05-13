@@ -12,6 +12,8 @@ public class AirFan : MonoBehaviour
     public float radius = 1.0f;
     public float height = 1.5f;
     public Vector3 direction = Vector3.forward;
+    [SerializeField] private float blowCD = .5f;
+    private float blowTimer = 0f;
     private Vector3 worldDirection;
     void Start()
     {
@@ -28,18 +30,29 @@ public class AirFan : MonoBehaviour
         Vector3 point = transform.position + Height;
         Collider[] colliders = Physics.OverlapCapsule(point, transform.position, radius);
 
-        foreach (Collider col in colliders)
+        blowTimer += Time.deltaTime;
+        if( blowTimer >= 0 )
         {
-            Rigidbody rb = col.GetComponent<Rigidbody>();
-            if (col.CompareTag("Player"))
+            foreach (Collider col in colliders)
             {
-                rb.velocity += power * playerMultiplier * transform.up;
+                Rigidbody rb = col.GetComponent<Rigidbody>();
+                if (col.CompareTag("Player"))
+                {
+                    rb.velocity = new Vector3( rb.velocity.x,0,rb.velocity.z );
+                    rb.velocity += power * playerMultiplier * transform.up;
+                    blowTimer = -blowCD;
+                    break;
+                }
+                //else if (col.CompareTag("Bullet"))
+                //{
+                //    rb.velocity += power * bulletMultiplier * transform.up;
+                //    blowTimer -= blowCD;
+                //    break;
+                //}
             }
-            else if (col.CompareTag("Bullet"))
-            {
-                rb.velocity += power * bulletMultiplier * transform.up;
-            }
+
         }
+        
     }
 
     void DrawGizmoCircle(Vector3 center, Vector3 normal, float radius)

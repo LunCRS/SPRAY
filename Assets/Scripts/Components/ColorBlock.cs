@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class ColorBlock : MonoBehaviour
 {
-    private Renderer rend;
+    public Renderer rend;
+    public GameObject partner;
+    [SerializeField] private bool colorFixBack = false;
     [SerializeField] private Color originColor = Color.blue;
     [SerializeField] private bool canBeChanged = true;
+    [SerializeField] private float fixBackTime = 3.0f;
 
     void Start()
     {
@@ -38,6 +41,33 @@ public class ColorBlock : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer("Green Layer");
         else if (color == Color.blue)
             gameObject.layer = LayerMask.NameToLayer("Blue Layer");
+        
+        if( partner != null )
+        {
+            ColorBlock partnerColorBlock = partner.GetComponent<ColorBlock>();
+            if( partnerColorBlock != null )
+            {
+                partnerColorBlock.rend.material.color = color;
+                if( color == Color.white )
+                    partner.layer = LayerMask.NameToLayer( "Default" );
+                else if( color == Color.red )
+                    partner.layer = LayerMask.NameToLayer( "Red Layer" );
+                else if( color == Color.green )
+                    partner.layer = LayerMask.NameToLayer( "Green Layer" );
+                else if( color == Color.blue )
+                    partner.layer = LayerMask.NameToLayer( "Blue Layer" );
+            }
+        }
+
+        if(colorFixBack)
+        {
+            ColorFix colorFix = GetComponent<ColorFix>();
+            if( colorFix != null )
+            {
+                StartCoroutine( colorFix.Fix( fixBackTime,originColor ) );
+            }
+        }
+
     }
 
 
