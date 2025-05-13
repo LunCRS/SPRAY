@@ -9,7 +9,13 @@ public class FireWall : MonoBehaviour
     public Vector3 moveDirection = Vector3.forward;
     public float baseSpeed = 2f;
     public float speedMultiplier = 0.5f;
+    public Transform birthPlace;
+    private Vector3 initialPosition;
 
+    void Start()
+    {
+        initialPosition = transform.position;
+    }
     void Update()
     {
         if (Player_Left != null && Player_Right != null)
@@ -20,15 +26,16 @@ public class FireWall : MonoBehaviour
             transform.Translate(moveDirection * currentSpeed * Time.deltaTime);
         }
     }
-    private void OnTriggerEnter(Collider other)
+
+    public void ResetWallPosition()
     {
-        if (other.CompareTag("Player"))
+        if (birthPlace != null)
         {
-            PlayerControl player = other.GetComponentInParent<PlayerControl>();
-            if (player != null)
-            {
-                player.isDead = true;
-            }
+            transform.position = birthPlace.position;
+        }
+        else
+        {
+            transform.position = initialPosition;
         }
     }
 }

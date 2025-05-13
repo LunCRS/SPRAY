@@ -16,6 +16,7 @@ public class MoveMachine : MonoBehaviour
     private bool movingToTarget = true;
 
     [SerializeField] private bool shouldReturn = true;
+    [SerializeField] private bool shouldStopAtEnd = false;
     [SerializeField] private Color color = Color.black; 
 
     void Start()
@@ -48,7 +49,14 @@ public class MoveMachine : MonoBehaviour
                 gameObject.SetActive( false );
             if (movingToTarget)
             {
-                movingToTarget = false;
+                if(shouldStopAtEnd)
+                {
+                    isMoving = false;
+                }
+                else
+                {
+                    movingToTarget = false;
+                }
             }
             else
             {
