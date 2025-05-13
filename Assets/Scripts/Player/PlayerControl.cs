@@ -195,4 +195,13 @@ public class PlayerControl : MonoBehaviour
         bulletColor = color;
     }
 
+    public void PositionLock()
+    {
+        rb.velocity = Vector3.zero;
+    }
+
+    public void ChangeMoveSpeed ( float speed)
+    {
+        moveSpeed += speed;
+    }
 }

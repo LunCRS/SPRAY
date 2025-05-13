@@ -19,6 +19,9 @@ public class BlockReset : MonoBehaviour
     {
         transform.position = pos.position;
         transform.rotation = pos.rotation;
+<<<<<<< HEAD
         transform.localScale = pos.localScale;
+=======
+>>>>>>> origin/FullBasicComponents
     }
 }

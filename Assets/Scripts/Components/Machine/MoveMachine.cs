@@ -16,6 +16,10 @@ public class MoveMachine : MonoBehaviour
     private bool movingToTarget = true;
 
     [SerializeField] private bool shouldReturn = true;
+<<<<<<< HEAD
+=======
+    [SerializeField] private Color color = Color.black; 
+>>>>>>> origin/FullBasicComponents
 
     void Start()
     {
@@ -24,7 +28,7 @@ public class MoveMachine : MonoBehaviour
 
         rend = GetComponent<Renderer>();
 
-        rend.material.color = Color.black;
+        rend.material.color = color;
     }
 
     public void move()

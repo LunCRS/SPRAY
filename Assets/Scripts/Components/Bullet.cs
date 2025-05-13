@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     private Renderer rend;
 
     private float lifeTimer = 0f;
-    [SerializeField] private Vector3 direction;
+    public Vector3 bulletDirection;
     public float speed = 114f;
     public bool useGravity = true;
     public float lifeTime = 5f;
@@ -25,9 +25,9 @@ public class Bullet : MonoBehaviour
         trans = GetComponent<Transform>();
         rend = GetComponentInChildren<Renderer>();
 
-        direction = trans.forward;
+        bulletDirection = trans.forward;
 
-        rb.velocity = new Vector3(direction.x * speed, direction.y * speed, direction.z * speed);
+        rb.velocity = new Vector3(bulletDirection.x * speed, bulletDirection.y * speed, bulletDirection.z * speed);
 
         SetBulletColor();
 
