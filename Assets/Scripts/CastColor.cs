@@ -6,9 +6,15 @@ public class CastColor : MonoBehaviour
 {
     private Renderer rend;
     [SerializeField] private Color color = Color.black;
-    void Update()
+    void Start()
     {
         rend = GetComponent<Renderer>();
         rend.material.color = color;
+
+    }
+
+    void Update()
+    {
+        
     }
 }

@@ -38,6 +38,7 @@ public class MazeSpeedControl : MonoBehaviour
             if( player != null )
             {
                 change = true;
+                player.jumpForce = 0f;
             }
 
         }
