@@ -31,12 +31,12 @@ public class PlayerControl : MonoBehaviour
     private float targetRotation = 0.0f;
 
     [Header( "Jump info" )]
-    [SerializeField] private float jumpForce = 5.0f;
+    public float jumpForce = 5.0f;
     [SerializeField] private float groundCheckDis = .1f;
     [SerializeField] private float coyoteTime = .2f;
     private float coyoteTimer;
     private bool canJump = true;
-    private bool isJumping = false;
+    private float jumpInterTimer = 0f;
 
     [Header( "Dead info" )]
     public Transform birthPlace;
@@ -110,11 +110,10 @@ public class PlayerControl : MonoBehaviour
     }
     private void JumpCheck ()
     {
-        if( IsGrounded() && rb.velocity.y <= 0)
+        if( IsGrounded() )
         {
             coyoteTimer = coyoteTime;
             canJump = true;
-            isJumping = false;
         }
         else
         {
@@ -122,13 +121,24 @@ public class PlayerControl : MonoBehaviour
             if( coyoteTimer <= 0 )
                 canJump = false;
         }
+        jumpInterTimer += Time.deltaTime;
     }
     void OnJump(InputValue value)
     {
-        if(canJump && !isJumping)
+        if(playerID == 1)
         {
-            rb.velocity = new Vector3( rb.velocity.x,jumpForce,rb.velocity.z );
-            isJumping = true;
+            if(canJump && jumpInterTimer >= coyoteTime + 0.05f)
+            {
+                rb.velocity = new Vector3( rb.velocity.x,jumpForce,rb.velocity.z );
+                jumpInterTimer = 0f;
+            }
+        }
+        else
+        {
+            if(IsGrounded())
+            {
+                rb.velocity = new Vector3( rb.velocity.x,jumpForce,rb.velocity.z );
+            }
         }
     }
 

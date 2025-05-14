@@ -22,7 +22,7 @@ public class Key : MonoBehaviour
         if( other.CompareTag( "Player" ) )
         {
             gameObject.SetActive( false );
-            manager.CheckKeys();
+            manager.GetKey();
         }
     }
 }
