@@ -12,14 +12,24 @@ public class laserunit_controller : MonoBehaviour
 
     private float[] lastHitTimes;
     private bool allActive = false;
+    private float resetTimer = 0f;
 
     void Start()
     {
         lastHitTimes = new float[triggerUnits.Count];
+
     }
 
     void Update()
     {
+        resetTimer += Time.deltaTime;
+
+
+        if (resetTimer >= 1f)
+        {
+            ResetAllTriggers();
+            resetTimer = 0f;
+        }
         bool allHit = true;
 
         for (int i = 0; i < triggerUnits.Count; i++)
@@ -58,4 +68,16 @@ public class laserunit_controller : MonoBehaviour
             allActive = false;
         }
     }
+    private void ResetAllTriggers()
+    {
+        for (int i = 0; i < triggerUnits.Count; i++)
+        {
+            triggerUnits[i]._isActivated = false;
+            if (triggerUnits[i].rend != null)
+            {
+                triggerUnits[i].rend.material.color = triggerUnits[i].requiredColor * 0.5f;
+            }
+        }
+    }
 }
+

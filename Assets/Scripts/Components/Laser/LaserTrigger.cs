@@ -38,7 +38,7 @@ public class LaserTrigger : MonoBehaviour
 
     public void Activate(Color laserColor)
     {
-        if (triggerType == 3 && !hasActivated)
+        if (triggerType == 3)
         {
             if (activatedMaterial != null)
             {

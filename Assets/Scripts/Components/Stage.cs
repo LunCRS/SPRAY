@@ -69,6 +69,12 @@ public class Stage : MonoBehaviour
                 isPlayerOnStage = true;
 
             }
+            else if (stageType == 6)
+            {
+                GameObject move_machine = machine_controller.GetLauncherForButton(gameObject);
+                move_machine.GetComponent<MoveMachine>().stop();
+            }
+
         }
     }
     void OnTriggerExit(Collider other)

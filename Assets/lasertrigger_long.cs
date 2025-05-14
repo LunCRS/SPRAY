@@ -5,7 +5,7 @@ using UnityEngine;
 public class lasertrigger_long : MonoBehaviour
 {
     public Color requiredColor = Color.red;
-    private Renderer rend;
+    public Renderer rend;
     public bool _isActivated = false;
 
     void Start()

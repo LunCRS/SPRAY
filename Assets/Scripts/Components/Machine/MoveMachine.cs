@@ -34,6 +34,11 @@ public class MoveMachine : MonoBehaviour
         movingToTarget = true;
     }
 
+    public void stop()
+    {
+        isMoving = false;
+    }
+
     void Update()
     {
         if (!isMoving) return;
