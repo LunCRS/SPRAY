@@ -5,18 +5,18 @@ using UnityEngine;
 public class MoveMachine : MonoBehaviour
 {
     private Renderer rend;
-
     public Vector3 movement;
     public float distance = 1f;
     public float speed = 0.1f;
 
     private Vector3 startPosition;
     private Vector3 targetPosition;
-    private bool isMoving = false;
-    private bool movingToTarget = true;
+    public bool isMoving = false;
+    public bool movingToTarget = true;
 
     [SerializeField] private bool shouldReturn = true;
-    [SerializeField] private Color color = Color.black; 
+    [SerializeField] private bool shoulddestroy = true;
+    [SerializeField] private Color color = Color.black;
 
     void Start()
     {
@@ -44,16 +44,18 @@ public class MoveMachine : MonoBehaviour
 
         if (transform.position == destination)
         {
-            if( !shouldReturn )
-                gameObject.SetActive( false );
-            if (movingToTarget)
+            if (!shouldReturn)
             {
-                movingToTarget = false;
+                if (shoulddestroy)
+                {
+                    gameObject.SetActive(false);
+                }
+                else
+                {
+                    isMoving = false;
+                }
             }
-            else
-            {
-                isMoving = false;
-            }
+            movingToTarget = !movingToTarget;
         }
     }
 }

@@ -6,8 +6,8 @@ public class ColorBlock : MonoBehaviour
 {
     public Renderer rend;
     public GameObject partner;
+    public Color originColor = Color.blue;
     [SerializeField] private bool colorFixBack = false;
-    [SerializeField] private Color originColor = Color.blue;
     [SerializeField] private bool canBeChanged = true;
     [SerializeField] private float fixBackTime = 3.0f;
 
@@ -17,16 +17,16 @@ public class ColorBlock : MonoBehaviour
 
         rend.material.color = originColor;
 
-        if( originColor == Color.white )
-            gameObject.layer = LayerMask.NameToLayer( "Default" );
-        else if( originColor == Color.red )
-            gameObject.layer = LayerMask.NameToLayer( "Red Layer" );
-        else if( originColor == Color.green )
-            gameObject.layer = LayerMask.NameToLayer( "Green Layer" );
-        else if( originColor == Color.blue )
-            gameObject.layer = LayerMask.NameToLayer( "Blue Layer" );
+        if (originColor == Color.white)
+            gameObject.layer = LayerMask.NameToLayer("Default");
+        else if (originColor == Color.red)
+            gameObject.layer = LayerMask.NameToLayer("Red Layer");
+        else if (originColor == Color.green)
+            gameObject.layer = LayerMask.NameToLayer("Green Layer");
+        else if (originColor == Color.blue)
+            gameObject.layer = LayerMask.NameToLayer("Blue Layer");
 
-        if( !canBeChanged )
+        if (!canBeChanged)
             gameObject.tag = "Untagged";
     }
 
@@ -41,30 +41,30 @@ public class ColorBlock : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer("Green Layer");
         else if (color == Color.blue)
             gameObject.layer = LayerMask.NameToLayer("Blue Layer");
-        
-        if( partner != null )
+
+        if (partner != null)
         {
             ColorBlock partnerColorBlock = partner.GetComponent<ColorBlock>();
-            if( partnerColorBlock != null )
+            if (partnerColorBlock != null)
             {
                 partnerColorBlock.rend.material.color = color;
-                if( color == Color.white )
-                    partner.layer = LayerMask.NameToLayer( "Default" );
-                else if( color == Color.red )
-                    partner.layer = LayerMask.NameToLayer( "Red Layer" );
-                else if( color == Color.green )
-                    partner.layer = LayerMask.NameToLayer( "Green Layer" );
-                else if( color == Color.blue )
-                    partner.layer = LayerMask.NameToLayer( "Blue Layer" );
+                if (color == Color.white)
+                    partner.layer = LayerMask.NameToLayer("Default");
+                else if (color == Color.red)
+                    partner.layer = LayerMask.NameToLayer("Red Layer");
+                else if (color == Color.green)
+                    partner.layer = LayerMask.NameToLayer("Green Layer");
+                else if (color == Color.blue)
+                    partner.layer = LayerMask.NameToLayer("Blue Layer");
             }
         }
 
-        if(colorFixBack)
+        if (colorFixBack)
         {
             ColorFix colorFix = GetComponent<ColorFix>();
-            if( colorFix != null )
+            if (colorFix != null)
             {
-                StartCoroutine( colorFix.Fix( fixBackTime,originColor ) );
+                StartCoroutine(colorFix.Fix(fixBackTime, originColor));
             }
         }
 

@@ -19,7 +19,7 @@ public class Enemy: MonoBehaviour
     public float knockbackforce = 5f; // Default knockback force was set with type
     private Renderer enemyRenderer; // Renderer component of the enemy
 
-    private void UpdateSize ()
+    public void UpdateSize ()
     {
         // Calculate the scale based on the volume
         transform.localScale = Vector3.one * volume * 0.5f;

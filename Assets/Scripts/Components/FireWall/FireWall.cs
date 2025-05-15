@@ -20,7 +20,12 @@ public class FireWall : MonoBehaviour
     {
         if (Player_Left != null && Player_Right != null)
         {
-            Vector3 player_position = (Player_Left.position + Player_Right.position) / 2f;
+            float distanceToLeft = Vector3.Distance(transform.position, Player_Left.position);
+            float distanceToRight = Vector3.Distance(transform.position, Player_Right.position);
+            
+            Transform closestPlayer = distanceToLeft < distanceToRight ? Player_Left : Player_Right;
+
+            Vector3 player_position = closestPlayer.position;
             float distanceToPlayer = Vector3.Dot(player_position - transform.position, moveDirection);
             float currentSpeed = baseSpeed + (distanceToPlayer * speedMultiplier);
             transform.Translate(moveDirection * currentSpeed * Time.deltaTime);
