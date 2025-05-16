@@ -34,6 +34,7 @@ public class PlayerControl : MonoBehaviour
     public float jumpForce = 5.0f;
     [SerializeField] private float groundCheckDis = .1f;
     [SerializeField] private float coyoteTime = .2f;
+    [SerializeField] private float maxYVelocity = 10f;
     private float coyoteTimer;
     private bool canJump = true;
     private float jumpInterTimer = 0f;
@@ -82,6 +83,9 @@ public class PlayerControl : MonoBehaviour
         {
             rb.velocity = new Vector3( 0f,rb.velocity.y,0f );
         }
+        
+        if(rb.velocity.y <= -maxYVelocity )
+            rb.velocity = new Vector3( rb.velocity.x,-maxYVelocity,rb.velocity.z );
 
         JumpCheck();
         FireUpdate();

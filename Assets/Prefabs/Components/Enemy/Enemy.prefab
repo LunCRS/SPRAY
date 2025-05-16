@@ -128,10 +128,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   patrolIndex: 0
+  agent: {fileID: 0}
   movespeed: 3.5
   huntDistance: 10
-  volume: 0
-  volumeToDie: 0
+  defaultVolume: 5
+  volume: 5
+  volumeToDie: 10
   enemyColor: {r: 0, g: 0, b: 0, a: 0}
   knockbackforce: 5
 --- !u!195 &6799981820091091202

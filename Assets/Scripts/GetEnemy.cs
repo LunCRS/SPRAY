@@ -5,7 +5,7 @@ using UnityEngine;
 public class GetEnemy : MonoBehaviour
 {
     [SerializeField] private GameObject[] enemies;
-    private bool actived = false;
+    public bool actived = false;
 
     private void OnTriggerEnter ( Collider other )
     {

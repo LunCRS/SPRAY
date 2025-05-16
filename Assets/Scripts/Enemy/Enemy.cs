@@ -8,18 +8,19 @@ public class Enemy: MonoBehaviour
     public GameObject[] preferTargets;
     public Transform[] patrolPoints;
     public int patrolIndex = 0; // Index of the current patrol point
-    private NavMeshAgent agent;
+    public NavMeshAgent agent;
     public float movespeed = 3.5f;
     public float huntDistance = 10f;
     //public string enemyType;
     //public string enemyName; // Never trust this
-    public int volume;  // Default volume was set with type
+    public int defaultVolume;  // Default volume was set with type
+    public int volume;
     public int volumeToDie; // Default volume to die was set with type
     public Color enemyColor; // Default color was set with type
     public float knockbackforce = 5f; // Default knockback force was set with type
     private Renderer enemyRenderer; // Renderer component of the enemy
 
-    private void UpdateSize ()
+    public void UpdateSize ()
     {
         // Calculate the scale based on the volume
         transform.localScale = Vector3.one * volume * 0.5f;
@@ -33,6 +34,8 @@ public class Enemy: MonoBehaviour
         agent.autoBraking = false; // Disable auto-braking to allow continuous movement
         enemyRenderer = GetComponent<Renderer>(); // Get the Renderer component of the enemy
         enemyRenderer.material.color = enemyColor; // Set the color
+
+        volume = defaultVolume;
 
         UpdateSize();
 

@@ -11,9 +11,13 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject Player_L, Player_R;
     [SerializeField] private GameObject Canvas_L, Canvas_R;
+    [SerializeField] private GameObject battleManager;
     [SerializeField] private float rebirthTime = 1f;
     [SerializeField] private float standOnDis = 1.1f;
     private float reTimer_L, reTimer_R;
+    private BattleManager battleScript;
+
+    public bool inBattle = false;
     void Start()
     {
         Cursor.visible = false;
@@ -26,25 +30,34 @@ public class GameManager : MonoBehaviour
 
         reTimer_L = rebirthTime;
         reTimer_R = rebirthTime;
+
+        battleScript = battleManager.GetComponent<BattleManager>();
     }
 
     void Update()
     {
+        if( control_L.isDead || control_R.isDead )
+            battleScript.ResetEnemy();
+
         if( control_L.isDead )
         {
             control_L.PositionLock();
             Player_L.transform.position = control_L.birthPlace.position;
+            if(inBattle)
+                Player_R.transform.position = control_R.birthPlace.position;
 
             control_L.isDead = false;
         }
-
-        if( control_R.isDead )
+        else if( control_R.isDead )
         {
             control_R.PositionLock();
             Player_R.transform.position = control_R.birthPlace.position;
-            
+            if(inBattle)
+                Player_L.transform.position = control_L.birthPlace.position;
+
             control_R.isDead = false;
         }
+
 
         PlayerStandOnCheck();
 

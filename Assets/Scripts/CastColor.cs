@@ -9,12 +9,12 @@ public class CastColor : MonoBehaviour
     void Start()
     {
         rend = GetComponent<Renderer>();
-        rend.material.color = color;
 
     }
 
     void Update()
     {
+        rend.material.color = color;
         
     }
 }
