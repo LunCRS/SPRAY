@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LinearLoopMovement : MonoBehaviour
+public class CycleMovementMachine : MonoBehaviour
 {
     public Vector3 movementDirection = Vector3.forward;
     public float movementDistance = 5f;

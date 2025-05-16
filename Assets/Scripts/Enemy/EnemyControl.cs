@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy: MonoBehaviour
+public class EnemyControl: MonoBehaviour
 {
     public GameObject[] preferTargets;
     public Transform[] patrolPoints;
     public int patrolIndex = 0; // Index of the current patrol point
-    private NavMeshAgent agent;
+    public NavMeshAgent agent;
     public float movespeed = 3.5f;
     public float huntDistance = 10f;
     //public string enemyType;

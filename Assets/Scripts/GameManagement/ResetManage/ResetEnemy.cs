@@ -10,8 +10,9 @@ public class ResetEnemies : MonoBehaviour
     {
         public bool isActive;
         public Vector3 position;
-        public Color color;
         public int volume;
+        public Vector3 velocity;
+        public Transform patrolPoint;
     }
 
     void Start()
@@ -20,14 +21,16 @@ public class ResetEnemies : MonoBehaviour
         {
             if (enemy != null)
             {
-                Enemy enemyVolume = enemy.GetComponent<Enemy>();
-                Renderer enemyRenderer = enemy.GetComponent<Renderer>();
+                Rigidbody enemyRigidbody = enemy.GetComponent<Rigidbody>();
+                EnemyControl enemyControl = enemy.GetComponent<EnemyControl>();
+
                 enemyInitialStates[enemy] = new EnemyInitialState
                 {
                     isActive = enemy.activeSelf,
                     position = enemy.transform.position,
-                    color = enemyVolume.enemyColor,
-                    volume = enemyVolume != null ? enemyVolume.volume : 0,
+                    volume = enemyControl != null ? enemyControl.volume : 0,
+                    velocity = enemyRigidbody != null ? enemyRigidbody.velocity : Vector3.zero,
+                    patrolPoint = enemyControl!= null? enemyControl.patrolPoints[0] : null
                 };
             }
         }
@@ -41,21 +44,23 @@ public class ResetEnemies : MonoBehaviour
 
             if (enemy != null)
             {
+                Rigidbody enemyRigidbody = enemy.GetComponent<Rigidbody>();
                 enemy.transform.position = state.position;
                 enemy.SetActive(state.isActive);
 
-                Enemy enemyVolume = enemy.GetComponent<Enemy>();
-                if (enemyVolume != null)
+                EnemyControl enemyControl = enemy.GetComponent<EnemyControl>();
+                if (enemyControl != null)
                 {
-                    enemyVolume.volume = state.volume;
-                    enemyVolume.UpdateSize();
+                    enemyControl.volume = state.volume;
+                    enemyControl.agent.destination = state.patrolPoint.position;
+                    enemyControl.UpdateSize();
+                }
+                if (enemyRigidbody != null)
+                {
+                    enemyRigidbody.velocity = Vector3.zero;
                 }
 
                 Renderer enemyRenderer = enemy.GetComponent<Renderer>();
-                if (enemyRenderer != null)
-                {
-                    enemyRenderer.material.color = state.color;
-                }
             }
         }
     }

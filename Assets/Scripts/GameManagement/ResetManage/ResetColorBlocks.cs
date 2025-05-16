@@ -25,18 +25,12 @@ public class ResetColorBlocks : MonoBehaviour
                 Rigidbody blockRigidbody = block.GetComponent<Rigidbody>();
                 ColorBlock colorblock = block.GetComponent<ColorBlock>();
 
-                Color initialColor = colorblock.originColor;
-                bool initialActiveState = block.activeSelf;
-                Vector3 initialPosition = block.transform.position;
-                Vector3 initialRotation = block.transform.rotation.eulerAngles;
-                Vector3 initialVelocity = blockRigidbody != null ? blockRigidbody.velocity : Vector3.zero;
-
                 blockInitialStates[block] = new BlockInitialState
                 {
-                    color = initialColor,
-                    isActive = initialActiveState,
-                    velocity = initialVelocity,
-                    position = initialPosition
+                    color = colorblock.originColor,
+                    isActive = block.activeSelf,
+                    position = block.transform.position,
+                    velocity = blockRigidbody != null ? blockRigidbody.velocity : Vector3.zero
                 };
             }
         }

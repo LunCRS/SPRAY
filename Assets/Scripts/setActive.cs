@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class setActive : MonoBehaviour
 {
-    [SerializeField] private GameObject obj;
+    [SerializeField] private GameObject[] objs;
 
-    private void OnTriggerEnter ( Collider other )
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag( "Player" ) )
+        if (other.CompareTag("Player"))
         {
-            obj.SetActive( true );
+            foreach (var obj in objs)
+            {
+                obj.SetActive(true);
+            }
         }
     }
 }

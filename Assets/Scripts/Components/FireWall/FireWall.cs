@@ -7,10 +7,11 @@ public class FireWall : MonoBehaviour
     public Transform Player_Left;
     public Transform Player_Right;
     public Vector3 moveDirection = Vector3.forward;
-    public float baseSpeed = 2f;
-    public float speedMultiplier = 0.5f;
+    public float baseSpeed = 1.5f;
+    public float speedMultiplier = 0.3f;
     public Transform birthPlace;
     private Vector3 initialPosition;
+    public bool isMoving = true;
 
     void Start()
     {
@@ -18,7 +19,7 @@ public class FireWall : MonoBehaviour
     }
     void Update()
     {
-        if (Player_Left != null && Player_Right != null)
+        if (isMoving && Player_Left != null && Player_Right != null)
         {
             float distanceToLeft = Vector3.Distance(transform.position, Player_Left.position);
             float distanceToRight = Vector3.Distance(transform.position, Player_Right.position);

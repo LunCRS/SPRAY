@@ -2,18 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class no_GetEnemy : MonoBehaviour
+public class setActive_false : MonoBehaviour
 {
-
-    [SerializeField] private GameObject[] enemies;
+    [SerializeField] private GameObject[] objs;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            foreach (var enemy in enemies)
+            foreach (var obj in objs)
             {
-                enemy.SetActive(false);
+                obj.SetActive(false);
             }
         }
     }
