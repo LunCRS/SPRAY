@@ -7,10 +7,10 @@ public class MovePlate : MonoBehaviour
     public Vector3 direction = Vector3.forward; // 移动方向
     public float speed = 2f;                   // 移动速度
     public float maxDistance = 5f;             // 最大移动距离
-    private bool isMoving = false;             // 是否正在移动
+    public bool isMoving = false;             // 是否正在移动
     private Vector3 startPosition;             // 起始位置
-    private float currentDistance = 0f;        // 当前已移动距离
-    [SerializeField] private bool movingForward = true;         // 当前是向前还是返回
+    public float currentDistance = 0f;        // 当前已移动距离
+    public bool movingForward = true;         // 当前是向前还是返回
     private float lastcheckDistance = 0f;
 
     public List<LensEmitter> lensEmittersToReset = new List<LensEmitter>();

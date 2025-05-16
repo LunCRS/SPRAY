@@ -18,6 +18,8 @@ TagManager:
   - DeadZone
   - TargetSwitch
   - Target
+  - Chaser_die
+  - Die
   layers:
   - Default
   - TransparentFX
@@ -31,7 +33,7 @@ TagManager:
   - Blue Layer
   - Laser
   - DeadZone
-  - 
+  - Chaser_die
   - 
   - 
   - 

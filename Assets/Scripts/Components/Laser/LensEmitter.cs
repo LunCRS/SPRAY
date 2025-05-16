@@ -29,6 +29,7 @@ public class LensEmitter : MonoBehaviour
     void Start()
     {
         objectRenderer = GetComponent<Renderer>();
+        gameObject.layer = LayerMask.NameToLayer("Laser");
     }
     void Update()
     {
@@ -85,9 +86,9 @@ public class LensEmitter : MonoBehaviour
         {
             hit.collider.GetComponent<LaserTrigger>().Activate(currentColor);
             if (currentColor == Color.white)
-                hit.collider.GetComponent<LaserTrigger>().hitcolor = hitColor;
+                hit.collider.GetComponent<LaserTrigger>().hit(hitColor);
             else
-                hit.collider.GetComponent<LaserTrigger>().hitcolor = currentColor;
+                hit.collider.GetComponent<LaserTrigger>().hit(currentColor);
             last_hitObject = hit.collider.gameObject;
         }
 

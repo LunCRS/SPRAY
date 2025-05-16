@@ -261,7 +261,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9036519478862949302}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.43327984, z: -0, w: 0.90125954}
+  m_LocalRotation: {x: 0, y: -0.43328166, z: 0, w: 0.9012586}
   m_LocalPosition: {x: 43.38, y: -2.89, z: -24.97}
   m_LocalScale: {x: 1.8300002, y: 1, z: 1.8695}
   m_ConstrainProportionsScale: 0
@@ -329,7 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraTarget: {fileID: 4529868257527917132}
   topClamp: 70
-  bottomClamp: -30
+  bottomClamp: -45
 --- !u!114 &1484992900607070086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,7 +349,7 @@ MonoBehaviour:
   fireRate: 0.25
   moveSpeed: 8
   jumpForce: 9
-  groundCheckDis: 1.1
+  groundCheckDis: 1.2
   coyoteTime: 0.3
   birthPlace: {fileID: 0}
   isDead: 0
@@ -400,9 +400,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.49617398
-  m_Height: 1.9038687
+  m_Height: 1.855195
   m_Direction: 1
-  m_Center: {x: 0.024400642, y: -0.07325995, z: 0.00074114517}
+  m_Center: {x: 0.02440064, y: -0.097596765, z: 0.0007411444}
 --- !u!65 &862785195669326183
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -422,8 +422,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8819142, y: 0.480744, z: 0.88319826}
-  m_Center: {x: -0.008102876, y: 0.67682284, z: 0.06057348}
+  m_Size: {x: 0.88191396, y: 0.48083508, z: 0.8717753}
+  m_Center: {x: -0.008102876, y: 0.6768684, z: 0.010359475}
 --- !u!65 &15918728946245431
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -443,5 +443,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.038383, z: 0.9999995}
-  m_Center: {x: 0, y: -0.13817444, z: 0}
+  m_Size: {x: 0.9999997, y: 0.8395531, z: 0.9999996}
+  m_Center: {x: 0, y: -0.01493156, z: 0}

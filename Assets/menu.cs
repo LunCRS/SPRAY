@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class menu : MonoBehaviour
@@ -20,7 +21,11 @@ public class menu : MonoBehaviour
     private ThirdPersonDirectionFollow directionFollow2;
     private ThirdPersonCamera cameraScript2;
 
+    [Header("音量控制")]
+    public Slider volumeSlider;
+    public TextMeshProUGUI volumeText;
 
+    private float currentVolume = 1.0f;
 
     private bool isPaused = false;
 
@@ -38,6 +43,13 @@ public class menu : MonoBehaviour
         playerScript2 = Player_Right.GetComponent<PlayerControl>();
         directionFollow2 = Player_Right.GetComponent<ThirdPersonDirectionFollow>();
         cameraScript2 = Player_Right.GetComponent<ThirdPersonCamera>();
+
+        volumeSlider.value = currentVolume;
+        UpdateVolumeText();
+        volumeSlider.onValueChanged.AddListener(ChangeVolume);
+
+
+
 
     }
 
@@ -84,5 +96,18 @@ public class menu : MonoBehaviour
         // 控制鼠标状态
         Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = isPaused;
+    }
+
+    public void ChangeVolume(float volume)
+    {
+        currentVolume = volume;
+        AudioListener.volume = currentVolume;  // 改变全局音量
+        UpdateVolumeText();
+    }
+
+    private void UpdateVolumeText()
+    {
+        if (volumeText != null)
+            volumeText.text = "Volume: " + Mathf.Round(currentVolume * 100) + "%";
     }
 }

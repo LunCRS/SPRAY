@@ -76,7 +76,7 @@ public class MirrorEmitter : MonoBehaviour
         if (ishit && isHit && hit.collider.CompareTag("LaserTrigger"))
         {
             hit.collider.GetComponent<LaserTrigger>().Activate(currentColor);
-            hit.collider.GetComponent<LaserTrigger>().hitcolor = currentColor;
+            hit.collider.GetComponent<LaserTrigger>().hit(currentColor);
             last_hitobject = hit.collider.gameObject;
         }
 

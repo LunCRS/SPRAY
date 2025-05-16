@@ -58,4 +58,24 @@ public class EmitterController : MonoBehaviour
             }
         }
     }
+    public void ResetHit_trigger()
+    {
+        Collider[] triggers = GameObject.FindGameObjectsWithTag("LaserTrigger")
+            .Select(go => go.GetComponent<Collider>()).ToArray();
+
+        foreach (var trigger in triggers)
+        {
+            if (trigger == null) continue;
+
+            LaserTrigger emitter = trigger.GetComponent<LaserTrigger>();
+            if (emitter != null)
+            {
+                emitter.ResetHitColor();
+            }
+            else
+            {
+                Debug.LogWarning($"[EmitterController] 找到 tag=trigger 的物体 {trigger.name}，但上面没有 MirrorEmitter 组件");
+            }
+        }
+    }
 }

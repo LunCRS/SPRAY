@@ -13,7 +13,8 @@ public class LaserTrigger : MonoBehaviour
     public int triggerType;
     private MachineController machine_controller;
 
-    public Color hitcolor;
+    public Color hitcolor1 = Color.white;
+    public Color hitcolor2 = Color.white;
 
 
     public Color requiredColor = Color.red;
@@ -42,11 +43,14 @@ public class LaserTrigger : MonoBehaviour
         {
             if (activatedMaterial != null)
             {
+
                 rend.material = activatedMaterial;
-                rend.material.color = hitcolor;
+                rend.material.color = hitcolor1;
+
+
 
                 GameObject colorblockmachine = machine_controller.GetLauncherForButton(gameObject);
-                colorblockmachine.GetComponent<colorblockmachine>().Activate(hitcolor);
+                colorblockmachine.GetComponent<colorblockmachine>().Activate(hitcolor1);
             }
         }
         if (laserColor == requiredColor && !hasActivated)
@@ -66,19 +70,44 @@ public class LaserTrigger : MonoBehaviour
                     GameObject move_machine = machine_controller.GetLauncherForButton(gameObject);
                     move_machine.GetComponent<MoveMachine>().move();
                 }
-                else if (triggerType == 2)
+                else if (triggerType == 4)
                 {
-                    GameObject lens = machine_controller.GetLauncherForButton(gameObject);
-                    lens.GetComponent<lensrotation>().changerotation(1);
+                    GameObject targetObject = machine_controller.GetLauncherForButton(gameObject);
+                    if (targetObject != null)
+                    {
+                        targetObject.SetActive(!targetObject.activeSelf);
+                    }
                 }
+
+
+                hasActivated = true;
             }
-
-
-            hasActivated = true;
+            else if (laserColor != requiredColor)
+            {
+                hasActivated = false;
+            }
         }
-        else if (laserColor != requiredColor)
+    }
+
+    public void ResetHitColor()
+    {
+        hitcolor1 = Color.white;
+    }
+
+    public void hit(Color color)
+    {
+        if (hitcolor1 == Color.white)
+            hitcolor1 = color;
+        else if (hitcolor1 != Color.white && hitcolor1 != color)
+            hitcolor2 = color;
+    }
+
+    private void selfcheck()
+    {
+        if (hitcolor1 == hitcolor2)
         {
-            hasActivated = false;
+            hitcolor2 = Color.white;
         }
+
     }
 }

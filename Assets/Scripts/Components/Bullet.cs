@@ -87,6 +87,7 @@ public class Bullet : MonoBehaviour
                 lensRotation.changerotation(direction);
                 controller.ResetHit_lens();
                 controller.ResetHit_mirror();
+                controller.ResetHit_trigger();
             }
             else if (allowed && rend.material.color == Color.red)
             {
@@ -94,6 +95,7 @@ public class Bullet : MonoBehaviour
                 lensRotation.changerotation(direction);
                 controller.ResetHit_lens();
                 controller.ResetHit_mirror();
+                controller.ResetHit_trigger();
             }
             isDestroyed = true;
         }

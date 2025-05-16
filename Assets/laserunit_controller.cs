@@ -59,6 +59,7 @@ public class laserunit_controller : MonoBehaviour
 
             if (durationMet)
             {
+                Debug.Log("laserunit_controller");
                 allActive = true;
                 receiver.Activate();
             }

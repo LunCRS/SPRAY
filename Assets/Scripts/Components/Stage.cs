@@ -36,6 +36,14 @@ public class Stage : MonoBehaviour
 
             }
         }
+        if (isPlayerOnStage && stageType == 7)
+        {
+            GameObject moveplate = machine_controller.GetLauncherForButton(gameObject);
+            if (moveplate != null)
+            {
+                moveplate.GetComponent<MoveMachine_Type2>().Move();
+            }
+        }
     }
     void OnTriggerEnter(Collider other)
     {
@@ -64,7 +72,7 @@ public class Stage : MonoBehaviour
                 GameObject lens = machine_controller.GetLauncherForButton(gameObject);
                 lens.GetComponent<lensrotation>().changerotation(1);
             }
-            else if (stageType == 5)
+            else if (stageType == 5 || stageType == 7)
             {
                 isPlayerOnStage = true;
 
@@ -73,6 +81,14 @@ public class Stage : MonoBehaviour
             {
                 GameObject move_machine = machine_controller.GetLauncherForButton(gameObject);
                 move_machine.GetComponent<MoveMachine>().stop();
+            }
+            else if (stageType == 8)
+            {
+                GameObject targetObject = machine_controller.GetLauncherForButton(gameObject);
+                if (targetObject != null)
+                {
+                    targetObject.SetActive(!targetObject.activeSelf);
+                }
             }
 
         }
@@ -88,6 +104,25 @@ public class Stage : MonoBehaviour
             if (moveplate != null)
             {
                 moveplate.GetComponent<MovePlate>().Stop();
+            }
+        }
+        if (other.CompareTag("Player") && stageType == 7)
+        {
+            isPlayerOnStage = false;
+
+            // 可选：通知 MoveMachine_Type2 停止移动
+            GameObject moveplate = machine_controller.GetLauncherForButton(gameObject);
+            if (moveplate != null)
+            {
+                moveplate.GetComponent<MoveMachine_Type2>().Stop();
+            }
+        }
+        if (other.CompareTag("Player") && stageType == 8)
+        {
+            GameObject targetObject = machine_controller.GetLauncherForButton(gameObject);
+            if (targetObject != null)
+            {
+                targetObject.SetActive(false);
             }
         }
     }
