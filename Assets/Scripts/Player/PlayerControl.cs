@@ -103,7 +103,7 @@ public class PlayerControl : MonoBehaviour
         Gizmos.DrawLine( transform.position,new Vector3(transform.position.x, transform.position.y - groundCheckDis, transform.position.z) );
 
     }
-    private bool IsGrounded ()
+    public bool IsGrounded ()
     {
         RaycastHit hit;
 

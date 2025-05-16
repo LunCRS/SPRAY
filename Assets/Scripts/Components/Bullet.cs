@@ -10,12 +10,17 @@ public class Bullet : MonoBehaviour
     private Rigidbody rb;
     private Transform trans;
     private Renderer rend;
+    private AudioSource audioSource;
 
+    [Header("Setting info")]
     private float lifeTimer = 0f;
     public Vector3 bulletDirection;
     public float speed = 114f;
     public bool useGravity = true;
     public float lifeTime = 5f;
+
+    [Header("Audio info")]
+    [SerializeField] private AudioClip bulletHitSound;
 
     private bool isDestroyed = false;
 
@@ -24,6 +29,7 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         trans = GetComponent<Transform>();
         rend = GetComponentInChildren<Renderer>();
+        audioSource = GetComponent<AudioSource>();
 
         bulletDirection = trans.forward;
 
@@ -41,7 +47,10 @@ public class Bullet : MonoBehaviour
             isDestroyed = true;
 
         if (isDestroyed)
+        {
             DestroyImmediate(gameObject);
+
+        }
     }
 
     private void SetBulletColor()
