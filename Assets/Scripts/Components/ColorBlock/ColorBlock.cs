@@ -18,7 +18,7 @@ public class ColorBlock : MonoBehaviour
         mats = rend.materials;
 
         if( !canBeChanged && (originColor == Color.red || originColor == Color.blue))
-            rend.material = mats[1];
+            rend.material = mats[0];
 
         rend.material.color = originColor;
 
