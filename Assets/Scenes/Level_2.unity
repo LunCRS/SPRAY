@@ -1605,6 +1605,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2908862125182778440, guid: 1be576689192cc040bbc0aae02104f83, type: 3}
+      propertyPath: birthPlace
+      value: 
+      objectReference: {fileID: 874376905}
     - target: {fileID: 8286123366553072798, guid: 1be576689192cc040bbc0aae02104f83, type: 3}
       propertyPath: m_Name
       value: Player_Left
@@ -2663,9 +2667,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c850ff8276a87e4aae657f07166cad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player_Left: {fileID: 0}
-  Player_Right: {fileID: 0}
-  ResetColorBlocks: {fileID: 0}
+  Player_Left: {fileID: 659173020}
+  Player_Right: {fileID: 373605198}
+  ResetColorBlocks: {fileID: 2095871943}
   ResetMoveMachines: {fileID: 633492164}
   ResetEnemies: {fileID: 224304389}
 --- !u!1 &232885526 stripped
@@ -14580,6 +14584,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1571351409856591102, guid: d1fa2a0c6dfabed49a2414a92532de3f, type: 3}
+      propertyPath: birthPlace
+      value: 
+      objectReference: {fileID: 144729253}
     - target: {fileID: 5144136093342359950, guid: d1fa2a0c6dfabed49a2414a92532de3f, type: 3}
       propertyPath: m_Name
       value: Player_Right
