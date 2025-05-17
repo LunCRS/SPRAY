@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class SwitchZone : MonoBehaviour
 {
-    [SerializeField] private Transform place;
-    void OnTriggerEnter ( Collider other )
+    [SerializeField] private Transform place_R;
+    [SerializeField] private Transform place_L;
+
+
+    void OnTriggerEnter(Collider other)
     {
-        if( other.CompareTag( "Player" ) )
+        if (other.CompareTag("Player"))
         {
             PlayerControl player = other.GetComponentInParent<PlayerControl>();
-            if( player != null )
+            if (player.player_type == 1)
             {
-                player.birthPlace = place;
+                player.birthPlace = place_R;
+            }
+            else if (player.player_type == 2)
+            {
+                player.birthPlace = place_L;
             }
         }
     }

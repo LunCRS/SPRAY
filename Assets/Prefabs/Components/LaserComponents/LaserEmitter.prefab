@@ -122,7 +122,7 @@ MonoBehaviour:
   maxDistance: 20
   combinedLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   lineRenderer: {fileID: 7122067852841498790}
   hitEffect: {fileID: 0}
   defaultColor: {r: 1, g: 0, b: 0, a: 1}

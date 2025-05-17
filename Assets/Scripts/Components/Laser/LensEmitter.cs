@@ -9,25 +9,27 @@ public class LensEmitter : MonoBehaviour
     public LayerMask combinedLayers;
     public LineRenderer lineRenderer;
     public ParticleSystem hitEffect;
-    public Color defaultColor = Color.red;
-    [SerializeField] private bool ishit_lens = false;
+    public bool ishit = false;
     public bool isMainHit = false;
-    private Renderer objectRenderer;
+    public Renderer objectRenderer;
     public Color currentColor;
+    public Color hitColor;
+    public GameObject last_hitObject = null;
 
     public bool GetIsHitLen()
     {
-        return ishit_lens;
+        return ishit;
     }
 
     public void SetIsHitLen(bool isHit)
     {
-        ishit_lens = isHit;
+        ishit = isHit;
     }
 
     void Start()
     {
         objectRenderer = GetComponent<Renderer>();
+        gameObject.layer = LayerMask.NameToLayer("Laser");
     }
     void Update()
     {
@@ -52,7 +54,7 @@ public class LensEmitter : MonoBehaviour
     {
 
 
-        if (ishit_lens)
+        if (ishit)
         {
             lineRenderer.positionCount = 2;
             lineRenderer.SetPosition(0, transform.position);
@@ -60,36 +62,69 @@ public class LensEmitter : MonoBehaviour
 
         }
 
-        if (!ishit_lens)
+        if (!ishit)
         {
             lineRenderer.positionCount = 0;
         }
-
         currentColor = objectRenderer.material.color;
-        lineRenderer.startColor = currentColor;
-        lineRenderer.endColor = currentColor;
+        if (currentColor == Color.white)
+        {
+            lineRenderer.startColor = hitColor;
+            lineRenderer.endColor = hitColor;
+        }
+        else
+        {
+            lineRenderer.startColor = currentColor;
+            lineRenderer.endColor = currentColor;
+        }
+
     }
 
     void HandleTriggerAndEffects(bool isHit, RaycastHit hit)
     {
-        if (ishit_lens && isHit && hit.collider.CompareTag("LaserTrigger"))
+        if (ishit && isHit && hit.collider.CompareTag("LaserTrigger"))
         {
-            hit.collider.GetComponent<LaserTrigger>().Activate();
+            hit.collider.GetComponent<LaserTrigger>().Activate(currentColor);
+            if (currentColor == Color.white)
+                hit.collider.GetComponent<LaserTrigger>().hit(hitColor);
+            else
+                hit.collider.GetComponent<LaserTrigger>().hit(currentColor);
+            last_hitObject = hit.collider.gameObject;
         }
 
-        if (ishit_lens && isHit && hit.collider.CompareTag("lens"))
+        if (ishit && isHit && hit.collider.CompareTag("lens"))
         {
             hit.collider.GetComponent<LensEmitter>().SetIsHitLen(true);
+            if (currentColor == Color.white)
+                hit.collider.GetComponent<LensEmitter>().hitColor = hitColor;
+            else
+                hit.collider.GetComponent<LensEmitter>().hitColor = currentColor;
+            last_hitObject = hit.collider.gameObject;
         }
-        if (ishit_lens && isHit && hit.collider.CompareTag("mirror"))
+        if (ishit && isHit && hit.collider.CompareTag("mirror"))
         {
             Vector3 reflectionDirection = Vector3.Reflect(transform.forward, hit.normal);
             hit.collider.GetComponent<MirrorEmitter>().SetIsHitMirror(true);
             hit.collider.GetComponent<MirrorEmitter>().reflection = reflectionDirection;
-            hit.collider.GetComponent<MirrorEmitter>().currentColor = defaultColor;
+            if (currentColor == Color.white)
+                hit.collider.GetComponent<MirrorEmitter>().currentColor = hitColor;
+            else
+                hit.collider.GetComponent<MirrorEmitter>().currentColor = currentColor;
+
             hit.collider.GetComponent<MirrorEmitter>().reflectionhitPoint = hit.point;
+            last_hitObject = hit.collider.gameObject;
 
         }
+        if (ishit && isHit && hit.collider.CompareTag("trigger_long"))
+        {
+            if (currentColor == Color.white)
+                hit.collider.GetComponent<lasertrigger_long>().Activate(hitColor);
+            else
+                hit.collider.GetComponent<lasertrigger_long>().Activate(currentColor);
+
+            last_hitObject = hit.collider.gameObject;
+        }
+
 
 
         if (hitEffect != null)

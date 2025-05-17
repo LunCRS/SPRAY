@@ -9,22 +9,23 @@ public class MirrorEmitter : MonoBehaviour
     public LayerMask combinedLayers;
     public LineRenderer lineRenderer;
     public ParticleSystem hitEffect;
-    public Color defaultColor = Color.red;
-    public bool ishit_mirror = false;
+    public Color defaultColor;
+    public bool ishit = false;
     public bool isMainHit = false;
     private Renderer objectRenderer;
     public Vector3 reflection;
     public Color currentColor;
     public Vector3 reflectionhitPoint;
+    public GameObject last_hitobject;
 
     public bool GetIsHitMirror()
     {
-        return ishit_mirror;
+        return ishit;
     }
 
     public void SetIsHitMirror(bool isHit)
     {
-        ishit_mirror = isHit;
+        ishit = isHit;
     }
 
 
@@ -53,7 +54,7 @@ public class MirrorEmitter : MonoBehaviour
 
     void UpdateBaseLaser_mirror(bool isHit, RaycastHit hit)
     {
-        if (ishit_mirror)
+        if (ishit)
         {
             lineRenderer.positionCount = 2;
             lineRenderer.SetPosition(0, reflectionhitPoint);
@@ -61,7 +62,7 @@ public class MirrorEmitter : MonoBehaviour
 
         }
 
-        if (!ishit_mirror)
+        if (!ishit)
         {
             lineRenderer.positionCount = 0;
         }
@@ -72,22 +73,27 @@ public class MirrorEmitter : MonoBehaviour
 
     void HandleTriggerAndEffects_mirror(bool isHit, RaycastHit hit)
     {
-        if (ishit_mirror && isHit && hit.collider.CompareTag("LaserTrigger"))
+        if (ishit && isHit && hit.collider.CompareTag("LaserTrigger"))
         {
-            hit.collider.GetComponent<LaserTrigger>().Activate();
+            hit.collider.GetComponent<LaserTrigger>().Activate(currentColor);
+            hit.collider.GetComponent<LaserTrigger>().hit(currentColor);
+            last_hitobject = hit.collider.gameObject;
         }
 
-        if (ishit_mirror && isHit && hit.collider.CompareTag("lens"))
+        if (ishit && isHit && hit.collider.CompareTag("lens"))
         {
             hit.collider.GetComponent<LensEmitter>().SetIsHitLen(true);
+            hit.collider.GetComponent<LensEmitter>().hitColor = currentColor;
+            last_hitobject = hit.collider.gameObject;
         }
-        if (ishit_mirror && isHit && hit.collider.CompareTag("mirror"))
+        if (ishit && isHit && hit.collider.CompareTag("mirror"))
         {
             Vector3 reflectionDirection = Vector3.Reflect(transform.forward, hit.normal);
             hit.collider.GetComponent<MirrorEmitter>().SetIsHitMirror(true);
             hit.collider.GetComponent<MirrorEmitter>().reflection = reflectionDirection;
-            hit.collider.GetComponent<MirrorEmitter>().currentColor = defaultColor;
+            hit.collider.GetComponent<MirrorEmitter>().currentColor = currentColor;
             hit.collider.GetComponent<MirrorEmitter>().reflectionhitPoint = hit.point;
+            last_hitobject = hit.collider.gameObject;
 
         }
 

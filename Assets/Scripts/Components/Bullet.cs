@@ -68,23 +68,58 @@ public class Bullet : MonoBehaviour
         rend.material.color = selfColor;
     }
 
-    void OnTriggerEnter ( Collider collider )
+    void OnTriggerEnter(Collider collider)
     {
-        if( collider.CompareTag( "ColorBlock" ) || collider.CompareTag( "lens" ) )
+        if (collider.CompareTag("ColorBlock"))
         {
             ColorBlock colorBlock = collider.GetComponent<ColorBlock>();
-            if( colorBlock != null )
+            if (colorBlock != null)
             {
-                colorBlock.ChangeColor( selfColor );
+                colorBlock.ChangeColor(selfColor);
                 isDestroyed = true;
             }
         }
-        else if( collider.CompareTag( "Ground" ) )
+
+        else if (collider.CompareTag("Bullettrigger"))
+        {
             isDestroyed = true;
-        else if( collider.CompareTag( "Target" ) )
+        }
+        else if (collider.CompareTag("lens") || collider.CompareTag("mirror"))
+        {
+            lensrotation lensRotation = collider.GetComponent<lensrotation>();
+            EmitterController controller = GameObject.FindObjectOfType<EmitterController>();
+            bool allowed = lensRotation.allowed;
+
+            if (allowed && rend.material.color == Color.blue)
+            {
+                int direction = 1;
+                lensRotation.changerotation(direction);
+                controller.ResetHit_lens();
+                controller.ResetHit_mirror();
+                controller.ResetHit_trigger();
+            }
+            else if (allowed && rend.material.color == Color.red)
+            {
+                int direction = -1;
+                lensRotation.changerotation(direction);
+                controller.ResetHit_lens();
+                controller.ResetHit_mirror();
+                controller.ResetHit_trigger();
+            }
+            isDestroyed = true;
+        }
+        else if (collider.CompareTag("Bullettrigger"))
+        {
+            isDestroyed = true;
+        }
+
+
+        else if (collider.CompareTag("Ground"))
+            isDestroyed = true;
+        else if (collider.CompareTag("Target"))
         {
             Target target = collider.GetComponent<Target>();
-            if( target != null )
+            if (target != null)
             {
                 target.SetActive();
                 isDestroyed = true;

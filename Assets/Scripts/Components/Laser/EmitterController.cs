@@ -5,9 +5,7 @@ using System.Linq;
 
 public class EmitterController : MonoBehaviour
 {
-    float resetTimer = 0f;
-    public float resetInterval = 1f;
-    // Start is called before the first frame update
+
     void Start()
     {
 
@@ -16,31 +14,68 @@ public class EmitterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        resetTimer += Time.deltaTime;
-        if (resetTimer >= resetInterval)
-        {
-            ResetHit_lens();
-            ResetHit_mirror();
-            resetTimer = 0f;
-        }
+
     }
 
-    void ResetHit_lens()
+    public void ResetHit_lens()
     {
-        // 获取所有带有"lens"标签的collider，并将ishit_lens设置为false
-        Collider[] lenses = GameObject.FindGameObjectsWithTag("lens").Select(go => go.GetComponent<Collider>()).ToArray();
+        Debug.Log("[EmitterController] lens reset");
+        Collider[] lenses = GameObject.FindGameObjectsWithTag("lens")
+            .Select(go => go.GetComponent<Collider>()).ToArray();
+
         foreach (var lens in lenses)
         {
-            lens.GetComponent<LensEmitter>().SetIsHitLen(false);
+            if (lens == null) continue;
+
+            LensEmitter emitter = lens.GetComponent<LensEmitter>();
+            if (emitter != null)
+            {
+                emitter.SetIsHitLen(false);
+            }
+            else
+            {
+                Debug.LogWarning($"[EmitterController] 找到 tag=lens 的物体 {lens.name}，但上面没有 LensEmitter 组件");
+            }
         }
     }
-    void ResetHit_mirror()
+    public void ResetHit_mirror()
     {
-        // 获取所有带有"mirror"标签的collider，并将ishit_mirror设置为false
-        Collider[] mirrors = GameObject.FindGameObjectsWithTag("mirror").Select(go => go.GetComponent<Collider>()).ToArray();
+        Collider[] mirrors = GameObject.FindGameObjectsWithTag("mirror")
+            .Select(go => go.GetComponent<Collider>()).ToArray();
+
         foreach (var mirror in mirrors)
         {
-            mirror.GetComponent<MirrorEmitter>().SetIsHitMirror(false);
+            if (mirror == null) continue;
+
+            MirrorEmitter emitter = mirror.GetComponent<MirrorEmitter>();
+            if (emitter != null)
+            {
+                emitter.SetIsHitMirror(false);
+            }
+            else
+            {
+                Debug.LogWarning($"[EmitterController] 找到 tag=mirror 的物体 {mirror.name}，但上面没有 MirrorEmitter 组件");
+            }
+        }
+    }
+    public void ResetHit_trigger()
+    {
+        Collider[] triggers = GameObject.FindGameObjectsWithTag("LaserTrigger")
+            .Select(go => go.GetComponent<Collider>()).ToArray();
+
+        foreach (var trigger in triggers)
+        {
+            if (trigger == null) continue;
+
+            LaserTrigger emitter = trigger.GetComponent<LaserTrigger>();
+            if (emitter != null)
+            {
+                emitter.ResetHitColor();
+            }
+            else
+            {
+                Debug.LogWarning($"[EmitterController] 找到 tag=trigger 的物体 {trigger.name}，但上面没有 MirrorEmitter 组件");
+            }
         }
     }
 }

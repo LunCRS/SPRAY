@@ -13,29 +13,30 @@ public class MazeManager : MonoBehaviour
 
     private MoveMachine exit;
     private bool getAllKeys = false;
-    
+
     void Start()
     {
         exit = exitMachine.GetComponent<MoveMachine>();
         keysNum = keys.Length;
     }
 
-    
+
     void Update()
     {
-        if(getAllKeys)
+        // Debug.Log(keys.Length);
+        if (getAllKeys && exit != null)
         {
             exit.move();
         }
-        
+
         goalText.text = "Goal " + keysGet + "/" + keysNum;
     }
 
     public void CheckKeys()
     {
-        foreach(var key in keys)
+        foreach (var key in keys)
         {
-            if(key.activeSelf)
+            if (key.activeSelf)
                 return;
         }
         getAllKeys = true;

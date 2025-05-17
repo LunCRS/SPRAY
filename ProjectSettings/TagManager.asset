@@ -13,9 +13,13 @@ TagManager:
   - mirror
   - Enemy
   - Ground
+  - trigger_long
+  - Bullettrigger
   - DeadZone
   - TargetSwitch
   - Target
+  - Chaser_die
+  - Die
   layers:
   - Default
   - TransparentFX
@@ -31,6 +35,8 @@ TagManager:
   - DeadZone
   - TransparencyLeft
   - TransparencyRight
+  - Chaser_die
+  - 
   - 
   - 
   - 
