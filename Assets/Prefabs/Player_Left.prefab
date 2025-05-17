@@ -266,7 +266,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Keyboard&Mouse
+  m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -319,9 +319,13 @@ MonoBehaviour:
   moveSpeed: 6
   jumpForce: 12
   groundCheckDis: 0.7
+  chaserCheckis: 0.1
   coyoteTime: 0.3
+  maxYVelocity: 10
   birthPlace: {fileID: 0}
   isDead: 0
+  player_type: 0
+  hasReset: 0
 --- !u!54 &8852576342672891865
 Rigidbody:
   m_ObjectHideFlags: 0

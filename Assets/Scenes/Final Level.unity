@@ -860,6 +860,23 @@ MonoBehaviour:
   Partner: {fileID: 535844957}
   isPlayerOnStage_Partner: 0
   stage_type: 0
+--- !u!1 &51449245 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6591061540096757829, guid: 6862a30a00f769a4bab91eaf69057112, type: 3}
+  m_PrefabInstance: {fileID: 119953062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &51449247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51449245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d07e1073fde7c7478be61d6586b3a9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &56760573 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6737940903383212930, guid: dd22672007fda4c4491a608d44479c69, type: 3}
@@ -1533,7 +1550,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6591061540096757829, guid: 6862a30a00f769a4bab91eaf69057112, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 51449247}
   m_SourcePrefab: {fileID: 100100000, guid: 6862a30a00f769a4bab91eaf69057112, type: 3}
 --- !u!1 &127961873 stripped
 GameObject:
@@ -17593,7 +17613,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1136277728}
-  - component: {fileID: 1136277727}
   m_Layer: 0
   m_Name: Laser1
   m_TagString: Untagged
@@ -17601,26 +17620,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1136277727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1136277726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c336e1da5f66f434ebb428f7bb83be6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movement: {x: 0, y: 0, z: 0}
-  distance: 1
-  speed: 0.1
-  isMoving: 0
-  movingToTarget: 1
-  shouldReturn: 1
-  shoulddestroy: 1
-  color: {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &1136277728
 Transform:
   m_ObjectHideFlags: 0
