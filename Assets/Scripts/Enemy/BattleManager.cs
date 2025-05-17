@@ -7,13 +7,13 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private GameObject[] enemies;
     [SerializeField] private GameObject[] getZones;
     private GetEnemy getEnemyScript;
-    private Enemy enemyScript;
+    private EnemyControl enemyScript;
 
     public void ResetEnemy()
     {
         foreach( var enemy in enemies )
         {
-            enemyScript = enemy.GetComponent<Enemy>();
+            enemyScript = enemy.GetComponent<EnemyControl>();
             enemy.transform.position = enemyScript.patrolPoints[0].position;
             enemyScript.volume = enemyScript.defaultVolume;
             enemyScript.UpdateSize();

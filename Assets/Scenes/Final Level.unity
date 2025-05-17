@@ -1235,8 +1235,10 @@ MonoBehaviour:
   Player_R: {fileID: 1978943911}
   Canvas_L: {fileID: 0}
   Canvas_R: {fileID: 0}
+  battleManager: {fileID: 0}
   rebirthTime: 1
   standOnDis: 1.1
+  inBattle: 0
 --- !u!4 &90642731
 Transform:
   m_ObjectHideFlags: 0
@@ -3318,8 +3320,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rend: {fileID: 0}
   partner: {fileID: 0}
-  colorFixBack: 0
   originColor: {r: 1, g: 0, b: 0, a: 1}
+  colorFixBack: 0
   canBeChanged: 0
   fixBackTime: 3
 --- !u!114 &262383079
@@ -5633,6 +5635,7 @@ MonoBehaviour:
   isMoving: 0
   movingToTarget: 1
   shouldReturn: 0
+  shoulddestroy: 1
   color: {r: 1, g: 0.45490196, b: 0, a: 1}
 --- !u!65 &408726721
 BoxCollider:
@@ -17616,6 +17619,7 @@ MonoBehaviour:
   isMoving: 0
   movingToTarget: 1
   shouldReturn: 1
+  shoulddestroy: 1
   color: {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &1136277728
 Transform:
@@ -20653,6 +20657,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 98563635683114756, guid: cee22490c65088e4082affb81f40a60c, type: 3}
   m_PrefabInstance: {fileID: 2074888285}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1348015076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348015067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f71adbb8607278c44a9c6e66a55a4f29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 1565930430}
+  playerBody: {fileID: 1600417020}
+  angleThreshold: 45
+  transparencyLayerName: TransparencyLeft
 --- !u!1 &1348036637 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8941155038676353659, guid: 221c7e4669bc4f64b85d80fb26cf2ad4, type: 3}
@@ -23686,6 +23706,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4902378291375005120, guid: 182fbf0305d208f42af15a989fc6b0c0, type: 3}
   m_PrefabInstance: {fileID: 1834337627}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1526496524 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3094629485240024086, guid: 8be8ee8bf41787f439ad4e94f4ec4ac6, type: 3}
+  m_PrefabInstance: {fileID: 2023588885}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1539949775 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6737940903383212930, guid: dd22672007fda4c4491a608d44479c69, type: 3}
@@ -25123,6 +25148,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2061942632}
   m_SourcePrefab: {fileID: 100100000, guid: 182fbf0305d208f42af15a989fc6b0c0, type: 3}
+--- !u!1 &1600417020 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3968429297868065594, guid: cee22490c65088e4082affb81f40a60c, type: 3}
+  m_PrefabInstance: {fileID: 2074888285}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1601510460 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1737093540486262222, guid: 85d2a6dbc10e25445b90072a14f4e171, type: 3}
@@ -30946,8 +30976,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rend: {fileID: 0}
   partner: {fileID: 0}
-  colorFixBack: 0
   originColor: {r: 1, g: 1, b: 1, a: 1}
+  colorFixBack: 0
   canBeChanged: 1
   fixBackTime: 3
 --- !u!1001 &1957709830
@@ -31472,6 +31502,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1978943930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978943911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f71adbb8607278c44a9c6e66a55a4f29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 1953844770}
+  playerBody: {fileID: 1526496524}
+  angleThreshold: 45
+  transparencyLayerName: TransparencyRight
 --- !u!1 &1979572218
 GameObject:
   m_ObjectHideFlags: 0
@@ -32506,7 +32552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1931324841919521474, guid: 8be8ee8bf41787f439ad4e94f4ec4ac6, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: Gamepad
+      value: Keyboard&Mouse
       objectReference: {fileID: 0}
     - target: {fileID: 1931324841919521474, guid: 8be8ee8bf41787f439ad4e94f4ec4ac6, type: 3}
       propertyPath: m_NeverAutoSwitchControlSchemes
@@ -32570,6 +32616,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9036519478862949302, guid: 8be8ee8bf41787f439ad4e94f4ec4ac6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1978943921}
+    - targetCorrespondingSourceObject: {fileID: 9036519478862949302, guid: 8be8ee8bf41787f439ad4e94f4ec4ac6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1978943930}
   m_SourcePrefab: {fileID: 100100000, guid: 8be8ee8bf41787f439ad4e94f4ec4ac6, type: 3}
 --- !u!1001 &2033296213
 PrefabInstance:
@@ -33181,6 +33230,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8208664019497914880, guid: cee22490c65088e4082affb81f40a60c, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208664019497914880, guid: cee22490c65088e4082affb81f40a60c, type: 3}
       propertyPath: m_NeverAutoSwitchControlSchemes
       value: 0
       objectReference: {fileID: 0}
@@ -33190,7 +33243,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 98563635683114756, guid: cee22490c65088e4082affb81f40a60c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1913511304}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7220720806770952394, guid: cee22490c65088e4082affb81f40a60c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1348015076}
   m_SourcePrefab: {fileID: 100100000, guid: cee22490c65088e4082affb81f40a60c, type: 3}
 --- !u!1 &2081841528
 GameObject:
@@ -34238,8 +34294,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rend: {fileID: 0}
   partner: {fileID: 0}
-  colorFixBack: 0
   originColor: {r: 1, g: 1, b: 1, a: 1}
+  colorFixBack: 0
   canBeChanged: 1
   fixBackTime: 3
 --- !u!1001 &2121312698

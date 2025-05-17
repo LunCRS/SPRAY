@@ -14,7 +14,7 @@ public class LaserEmitter : MonoBehaviour
     {
         // ResetHit_lens();
         // ResetHit_mirror();
-        // 主射线检测（同时检测触发器和透镜）
+        // Main ray detection (detects both triggers and lenses)
         RaycastHit mainHit;
         bool isMainHit = Physics.Raycast(
             transform.position,

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class ResetColorBlocks : MonoBehaviour
+public class ResetColorBlocks_2 : MonoBehaviour
 {
     public List<GameObject> blocksToManage = new List<GameObject>();
 

@@ -6,7 +6,7 @@ public class TransparencyController : MonoBehaviour
 {
     public Transform cameraTransform; // The camera transform
     public GameObject playerBody; 
-    public float angleThreshold = 60f; // The angle threshold for transparency
+    public float angleThreshold = 45f; // The angle threshold for transparency
     public string transparencyLayerName; // The name of the transparency layer
 
 

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class ResetManager : MonoBehaviour
+public class ResetManager_2 : MonoBehaviour
 {
     public PlayerControl Player_Left;
     public PlayerControl Player_Right;
