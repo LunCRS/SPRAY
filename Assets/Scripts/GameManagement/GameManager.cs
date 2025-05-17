@@ -31,13 +31,17 @@ public class GameManager : MonoBehaviour
         reTimer_L = rebirthTime;
         reTimer_R = rebirthTime;
 
-        battleScript = battleManager.GetComponent<BattleManager>();
+        if(battleManager != null)
+            battleScript = battleManager.GetComponent<BattleManager>();
     }
 
     void Update()
     {
         if( control_L.isDead || control_R.isDead )
-            battleScript.ResetEnemy();
+        {
+            if(battleScript != null)
+                battleScript.ResetEnemy();
+        }
 
         if( control_L.isDead )
         {
