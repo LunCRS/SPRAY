@@ -22,7 +22,7 @@ public class PlayerControl : MonoBehaviour
     private float fireTimer = 0f;
     private InputAction fireAction;
     private bool isPerformingFire = false;
-    
+
 
     [Header("Move info")]
     public float moveSpeed = 6.0f;
@@ -92,9 +92,9 @@ public class PlayerControl : MonoBehaviour
         {
             rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
         }
-        
-        if(rb.velocity.y <= -maxYVelocity )
-            rb.velocity = new Vector3( rb.velocity.x,-maxYVelocity,rb.velocity.z );
+
+        if (rb.velocity.y <= -maxYVelocity)
+            rb.velocity = new Vector3(rb.velocity.x, -maxYVelocity, rb.velocity.z);
 
         JumpCheck();
         FireUpdate();
@@ -112,7 +112,7 @@ public class PlayerControl : MonoBehaviour
         Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y - groundCheckDis, transform.position.z));
 
     }
-    public bool IsGrounded ()
+    public bool IsGrounded()
     {
         RaycastHit hit;
 

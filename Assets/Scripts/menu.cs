@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 
 public class menu : MonoBehaviour
@@ -16,6 +17,8 @@ public class menu : MonoBehaviour
     private PlayerControl playerScript1;
     private ThirdPersonDirectionFollow directionFollow1;
     private ThirdPersonCamera cameraScript1;
+    private PlayerInput inputScript1;
+    private PlayerInput inputScript2;
 
     private PlayerControl playerScript2;
     private ThirdPersonDirectionFollow directionFollow2;
@@ -28,6 +31,11 @@ public class menu : MonoBehaviour
     private float currentVolume = 1.0f;
 
     private bool isPaused = false;
+
+    [Header("控制设置")]
+    public float sensitivity = 1f; // 灵敏度
+    public Slider sensitivitySlider;
+    public TextMeshProUGUI sensitivityText;
 
     void Start()
     {
@@ -43,10 +51,16 @@ public class menu : MonoBehaviour
         playerScript2 = Player_Right.GetComponent<PlayerControl>();
         directionFollow2 = Player_Right.GetComponent<ThirdPersonDirectionFollow>();
         cameraScript2 = Player_Right.GetComponent<ThirdPersonCamera>();
-
+        inputScript1 = Player_Left.GetComponent<PlayerInput>();
+        inputScript2 = Player_Right.GetComponent<PlayerInput>();
         volumeSlider.value = currentVolume;
         UpdateVolumeText();
         volumeSlider.onValueChanged.AddListener(ChangeVolume);
+        sensitivitySlider.value = sensitivity;
+        sensitivitySlider.onValueChanged.AddListener(OnSensitivityChanged);
+        UpdateSemsitivityText();
+
+
 
 
 
@@ -56,10 +70,10 @@ public class menu : MonoBehaviour
     void Update()
     {
         // 监听ESC按键
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            TogglePause();
-        }
+        // if (Input.GetKeyDown(KeyCode.Escape))
+        // {
+        //     TogglePause();
+        // }
     }
 
     public void TogglePause()
@@ -92,6 +106,12 @@ public class menu : MonoBehaviour
         if (cameraScript2 != null)
             cameraScript2.enabled = !isPaused;
 
+        if (inputScript1 != null)
+            inputScript1.enabled = !isPaused;
+
+        if (inputScript2 != null)
+            inputScript2.enabled = !isPaused;
+
 
         // 控制鼠标状态
         Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
@@ -109,5 +129,24 @@ public class menu : MonoBehaviour
     {
         if (volumeText != null)
             volumeText.text = "Volume: " + Mathf.Round(currentVolume * 100) + "%";
+    }
+
+    private void OnSensitivityChanged(float newValue)
+    {
+        sensitivity = newValue;
+
+        if (cameraScript1 != null)
+            cameraScript1.setsensitivity(sensitivity);
+
+        // 更新玩家2的摄像机灵敏度
+        if (cameraScript2 != null)
+            cameraScript2.setsensitivity(sensitivity);
+
+        UpdateSemsitivityText();
+    }
+    private void UpdateSemsitivityText()
+    {
+        if (sensitivityText != null)
+            sensitivityText.text = "Sensitivity: " + sensitivity.ToString("F2");
     }
 }
