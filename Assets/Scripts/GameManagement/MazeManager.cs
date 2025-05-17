@@ -20,7 +20,7 @@ public class MazeManager : MonoBehaviour
         keysNum = keys.Length;
     }
 
-
+    
     void Update()
     {
         // Debug.Log(keys.Length);

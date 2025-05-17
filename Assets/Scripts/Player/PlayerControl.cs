@@ -22,7 +22,7 @@ public class PlayerControl : MonoBehaviour
     private float fireTimer = 0f;
     private InputAction fireAction;
     private bool isPerformingFire = false;
-
+    
 
     [Header("Move info")]
     public float moveSpeed = 6.0f;

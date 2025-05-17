@@ -16,6 +16,7 @@ public class MoveMachine : MonoBehaviour
     public bool movingToTarget = true;
 
     [SerializeField] private bool shouldReturn = true;
+    [SerializeField] private bool shoulddestroy = true;
     [SerializeField] private Color color = Color.black;
     private Vector3 initialPosition;
 
@@ -53,30 +54,17 @@ public class MoveMachine : MonoBehaviour
         if (transform.position == destination)
         {
             if (!shouldReturn)
-                gameObject.SetActive(false);
-            if (movingToTarget)
             {
-                movingToTarget = true;
-            }
-            else
-            {
-                if (movingToTarget)
+                if (shoulddestroy)
                 {
-                    movingToTarget = false;
+                    gameObject.SetActive(false);
                 }
                 else
                 {
                     isMoving = false;
                 }
             }
-
+            movingToTarget = !movingToTarget;
         }
     }
-    // public void OnReset()
-    // {
-    //     Debug.Log("OnReset");
-    //     transform.position = initialPosition;
-    //     movingToTarget = false;
-    //     isMoving = false;
-    // }
 }
