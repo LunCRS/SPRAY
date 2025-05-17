@@ -62,7 +62,7 @@ public class PlayerControl : MonoBehaviour
         fireAction = inputActionAsset.FindAction("Fire");
         coyoteTimer = coyoteTime;
 
-        rend.material.color = selfColor;
+        //rend.material.color = selfColor;
 
         fireAction.started += ctx => isPerformingFire = true;
         fireAction.canceled += ctx => isPerformingFire = false;

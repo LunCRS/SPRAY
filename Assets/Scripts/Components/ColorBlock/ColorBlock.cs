@@ -10,10 +10,15 @@ public class ColorBlock : MonoBehaviour
     [SerializeField] private bool colorFixBack = false;
     [SerializeField] private bool canBeChanged = true;
     [SerializeField] private float fixBackTime = 3.0f;
+    private Material[] mats;
 
     void Start()
     {
         rend = GetComponentInChildren<Renderer>();
+        mats = rend.materials;
+
+        if( !canBeChanged && (originColor == Color.red || originColor == Color.blue))
+            rend.material = mats[1];
 
         rend.material.color = originColor;
 
