@@ -4,30 +4,41 @@ using UnityEngine;
 
 public class ArriveTogether : MonoBehaviour
 {
-    [SerializeField] private GameObject moveMachine;
+    [SerializeField] private GameObject Player_L;
+    [SerializeField] private GameObject Player_R;
+    [SerializeField] private Transform Birth_L;
+    [SerializeField] private Transform Birth_R;
+    private PlayerControl lPlayer, rPlayer;
     private bool lArrive = false, rArrive = false;
 
-    private void Update ()
+    void Start()
     {
-        if( lArrive && rArrive )
+        lPlayer = Player_L.GetComponent<PlayerControl>();
+        rPlayer = Player_R.GetComponent<PlayerControl>();
+    }
+
+    private void Update()
+    {
+        if (lArrive && rArrive)
         {
-            moveMachine.GetComponent<MoveMachine>().move();
+            lPlayer.birthPlace = Birth_L;
+            rPlayer.birthPlace = Birth_R;
         }
     }
 
 
-    void OnTriggerEnter ( Collider other )
+    void OnTriggerEnter(Collider other)
     {
-        if( other.CompareTag( "Player" ) )
+        if (other.CompareTag("Player"))
         {
             PlayerControl player = other.GetComponentInParent<PlayerControl>();
-            if( player != null )
+            if (player != null)
             {
-                if(player.playerID == 1 )
+                if (player.playerID == 1)
                 {
                     lArrive = true;
                 }
-                if(player.playerID == 2 )
+                if (player.playerID == 2)
                 {
                     rArrive = true;
                 }

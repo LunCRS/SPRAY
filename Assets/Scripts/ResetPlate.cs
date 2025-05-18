@@ -18,8 +18,8 @@ public class ResetPlate : MonoBehaviour
         // 确保是玩家角色进入触发器
         playerControl = other.GetComponent<PlayerControl>();
         thirdPersonCamera = other.GetComponent<ThirdPersonCamera>();
-        
-        if ( playerControl.hasReset) return;
+
+        if (playerControl.hasReset) return;
 
         if (playerControl != null && thirdPersonCamera != null)
         {
@@ -37,14 +37,14 @@ public class ResetPlate : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         playerControl = other.GetComponent<PlayerControl>();
-        if( playerControl.hasReset )
+        if (playerControl.hasReset)
         {
             playerControl.hasReset = false;
         }
-        if( type == 0 )
-            ShuiLiFang.SetActive( true );
-        else if( type == 1 )
-            ShuiLiFang.SetActive( false );
+        if (type == 0)
+            ShuiLiFang.SetActive(true);
+        else if (type == 1)
+            ShuiLiFang.SetActive(false);
 
     }
 }

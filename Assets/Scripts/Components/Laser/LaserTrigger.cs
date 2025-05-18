@@ -15,6 +15,7 @@ public class LaserTrigger : MonoBehaviour
 
     public Color hitcolor1 = Color.white;
     public Color hitcolor2 = Color.white;
+    public Color lastColor = Color.white;
 
 
     public Color requiredColor = Color.red;
@@ -50,7 +51,7 @@ public class LaserTrigger : MonoBehaviour
 
 
                 GameObject colorblockmachine = machine_controller.GetLauncherForButton(gameObject);
-                colorblockmachine.GetComponent<colorblockmachine>().Activate(hitcolor1);
+                colorblockmachine.GetComponent<colorblockmachine>().Activate(lastColor);
             }
         }
         if (laserColor == requiredColor && !hasActivated)
@@ -97,7 +98,11 @@ public class LaserTrigger : MonoBehaviour
     public void hit(Color color)
     {
         if (hitcolor1 == Color.white)
+        {
             hitcolor1 = color;
+            lastColor = hitcolor1;
+        }
+
         else if (hitcolor1 != Color.white && hitcolor1 != color)
             hitcolor2 = color;
     }

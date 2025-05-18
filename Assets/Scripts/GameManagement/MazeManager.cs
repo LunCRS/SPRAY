@@ -14,20 +14,38 @@ public class MazeManager : MonoBehaviour
     private MoveMachine exit;
     private bool getAllKeys = false;
 
+    public int type = 0;
+
     void Start()
     {
-        exit = exitMachine.GetComponent<MoveMachine>();
+        if (type == 0)
+        {
+            exit = exitMachine.GetComponent<MoveMachine>();
+
+        }
         keysNum = keys.Length;
+
     }
 
-    
+
     void Update()
     {
         // Debug.Log(keys.Length);
-        if (getAllKeys && exit != null)
+        if (type == 0)
         {
-            exit.move();
+            if (getAllKeys && exit != null)
+            {
+                exit.move();
+            }
         }
+        else if (type == 1)
+        {
+            if (getAllKeys)
+            {
+                exitMachine.SetActive(false);
+            }
+        }
+
 
         goalText.text = "Goal " + keysGet + "/" + keysNum;
     }
