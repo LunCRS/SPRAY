@@ -82,7 +82,7 @@ public class Stage : MonoBehaviour
                 GameObject move_machine = machine_controller.GetLauncherForButton(gameObject);
                 move_machine.GetComponent<MoveMachine>().stop();
             }
-            else if (stageType == 8)
+            else if (stageType == 8 || stageType == 9)
             {
                 GameObject targetObject = machine_controller.GetLauncherForButton(gameObject);
                 if (targetObject != null)
@@ -117,12 +117,12 @@ public class Stage : MonoBehaviour
                 moveplate.GetComponent<MoveMachine_Type2>().Stop();
             }
         }
-        if (other.CompareTag("Player") && stageType == 8)
+        if( other.CompareTag( "Player" ) && stageType == 9 )
         {
-            GameObject targetObject = machine_controller.GetLauncherForButton(gameObject);
-            if (targetObject != null)
+            GameObject targetObject = machine_controller.GetLauncherForButton( gameObject );
+            if( targetObject != null )
             {
-                targetObject.SetActive(false);
+                targetObject.SetActive( false );
             }
         }
     }

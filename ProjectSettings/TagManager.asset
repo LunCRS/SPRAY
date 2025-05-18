@@ -20,6 +20,7 @@ TagManager:
   - Target
   - Chaser_die
   - Die
+  - ConveyorBlet
   layers:
   - Default
   - TransparentFX
@@ -36,9 +37,7 @@ TagManager:
   - TransparencyLeft
   - TransparencyRight
   - Chaser_die
-  - 
-  - 
-  - 
+  - ShuiLiFang
   - 
   - 
   - 

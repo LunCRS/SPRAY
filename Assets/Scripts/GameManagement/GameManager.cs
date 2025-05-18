@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     {
         if( control_L.isDead || control_R.isDead )
         {
+            
             if(battleScript != null)
                 battleScript.ResetEnemy();
         }
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
 
             control_L.isDead = false;
         }
-        else if( control_R.isDead )
+        if( control_R.isDead )
         {
             control_R.PositionLock();
             Player_R.transform.position = control_R.birthPlace.position;

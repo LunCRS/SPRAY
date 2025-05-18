@@ -12,6 +12,7 @@ public class TransparencyController : MonoBehaviour
 
     void Start()
     {
+
     }
 
     void Update()

@@ -66,7 +66,7 @@ public class MovePlate : MonoBehaviour
                 // isMoving = false; // 如果不想循环，取消注释这行
             }
         }
-        if (currentDistance - lastcheckDistance > 0.5)
+        if (currentDistance - lastcheckDistance > 0.1)
         {
             foreach (var emitter in lensEmittersToReset)
             {
