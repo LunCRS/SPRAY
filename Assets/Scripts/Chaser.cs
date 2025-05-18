@@ -31,7 +31,7 @@ public class Chaser : MonoBehaviour
     {
         if (player_L.IsChaser() || player_R.IsChaser())
         {
-            Debug.Log("Chaser_die");
+            //Debug.Log("Chaser_die");
 
             player_L.isDead = true;
             player_R.isDead = true;

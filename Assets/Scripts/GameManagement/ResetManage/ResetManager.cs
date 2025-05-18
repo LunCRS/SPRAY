@@ -5,7 +5,7 @@ public class ResetManager_2 : MonoBehaviour
 {
     public PlayerControl Player_Left;
     public PlayerControl Player_Right;
-    public ResetColorBlocks ResetColorBlocks;
+    public ResetColorBlocks_2 ResetColorBlocks;
     public ResetMoveMachines ResetMoveMachines;
     public ResetEnemies ResetEnemies;
 

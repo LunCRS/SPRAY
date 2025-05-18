@@ -60,7 +60,7 @@ public class ResetColorBlocks : MonoBehaviour
                 ColorBlock colorblock = block.GetComponent<ColorBlock>();
 
 
-                Debug.Log("2");
+               
                 colorblock.rend.material.color = state.color;
 
                 block.SetActive(state.isActive);

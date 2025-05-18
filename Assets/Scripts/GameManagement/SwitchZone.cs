@@ -12,7 +12,7 @@ public class SwitchZone : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerControl player = other.GetComponentInParent<PlayerControl>();
+            PlayerControl player = other.GetComponent<PlayerControl>();
             if (player.player_type == 1)
             {
                 player.birthPlace = place_R;

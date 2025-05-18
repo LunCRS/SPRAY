@@ -18,7 +18,7 @@ public class EnemyControl: MonoBehaviour
     public int volumeToDie; // Default volume to die was set with type
     public Color enemyColor; // Default color was set with type
     public float knockbackforce = 5f; // Default knockback force was set with type
-    private Renderer enemyRenderer; // Renderer component of the enemy
+    public Renderer enemyRenderer; // Renderer component of the enemy
 
     public void UpdateSize ()
     {
@@ -32,7 +32,7 @@ public class EnemyControl: MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.speed = movespeed;
         agent.autoBraking = false; // Disable auto-braking to allow continuous movement
-        enemyRenderer = GetComponent<Renderer>(); // Get the Renderer component of the enemy
+        enemyRenderer = GetComponentInChildren<Renderer>(); // Get the Renderer component of the enemy
         enemyRenderer.material.color = enemyColor; // Set the color
 
         volume = defaultVolume;

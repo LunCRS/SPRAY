@@ -7,7 +7,7 @@ public class PlayerControl : MonoBehaviour
 {
     #region Components
     private GameObject mainCamera;
-    private Rigidbody rb;
+    public Rigidbody rb;
     private Renderer rend;
     private InputActionAsset inputActionAsset;
     #endregion
@@ -35,6 +35,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     private float groundCheckDis = .1f;
     [SerializeField] private float chaserCheckis = .1f;
+    [SerializeField] private float ShuiLiFangCheckDis = .1f;
     [SerializeField] private float coyoteTime = .2f;
     [SerializeField] private float maxYVelocity = 10f;
     private float coyoteTimer;
@@ -138,6 +139,19 @@ public class PlayerControl : MonoBehaviour
         return false;
     }
 
+    public bool IsShuiLiFang ()
+    {
+        RaycastHit hit_ShuiLiFang;
+
+        if( Physics.Raycast( transform.position,Vector3.down,out hit_ShuiLiFang,ShuiLiFangCheckDis ) )
+        {
+            //Debug.Log( gameObject.layer );
+            return hit_ShuiLiFang.collider.gameObject.layer == LayerMask.NameToLayer( "ShuiLiFang" ); ;
+        }
+
+        return false;
+    }
+
 
     private void JumpCheck()
     {
@@ -156,21 +170,17 @@ public class PlayerControl : MonoBehaviour
     }
     void OnJump(InputValue value)
     {
-        if (playerID == 1)
+        if (canJump && jumpInterTimer >= coyoteTime + 0.05f)
         {
-            if (canJump && jumpInterTimer >= coyoteTime + 0.05f)
-            {
-                rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
-                jumpInterTimer = 0f;
-            }
+            rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+            jumpInterTimer = 0f;
         }
-        else
+
+        if (IsGrounded())
         {
-            if (IsGrounded())
-            {
-                rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
-            }
+            rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
         }
+        
     }
 
     void OnFire(InputValue value)
