@@ -136,6 +136,10 @@ MonoBehaviour:
   enemyColor: {r: 1, g: 0, b: 0, a: 1}
   knockbackforce: 5
   enemyRenderer: {fileID: 0}
+  audioClips:
+  - {fileID: 8300000, guid: 06e3edbd7c12c5540a7ff087100bae8d, type: 3}
+  - {fileID: 8300000, guid: 672b2c52441244c4aa053a49f5b555ea, type: 3}
+  - {fileID: 8300000, guid: bf633c5bec77ff54083b528b351ff144, type: 3}
 --- !u!195 &6799981820091091202
 NavMeshAgent:
   m_ObjectHideFlags: 0

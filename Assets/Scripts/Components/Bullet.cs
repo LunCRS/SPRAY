@@ -10,7 +10,6 @@ public class Bullet : MonoBehaviour
     private Rigidbody rb;
     private Transform trans;
     private Renderer rend;
-    private AudioSource audioSource;
 
     [Header("Setting info")]
     private float lifeTimer = 0f;
@@ -20,8 +19,7 @@ public class Bullet : MonoBehaviour
     public float lifeTime = 5f;
 
     [Header("Audio info")]
-    [SerializeField] private AudioClip bulletHitSound;
-    [SerializeField] private AudioClip[] audioClips;
+    [SerializeField] private GameObject audioPlayer;
 
     private bool isDestroyed = false;
 
@@ -30,10 +28,8 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         trans = GetComponent<Transform>();
         rend = GetComponentInChildren<Renderer>();
-        audioSource = GetComponent<AudioSource>();
         
-        bulletHitSound = audioClips[UnityEngine.Random.Range( 0,audioClips.Length )];
-        audioSource.clip = bulletHitSound;
+        
 
         bulletDirection = trans.forward;
 
@@ -50,8 +46,9 @@ public class Bullet : MonoBehaviour
         if (lifeTimer >= lifeTime)
             isDestroyed = true;
 
-        if (isDestroyed)
+        if (isDestroyed && lifeTimer < lifeTime)
         {
+            GameObject audio = Instantiate( audioPlayer,transform.position,Quaternion.identity );
             DestroyImmediate(gameObject);
         }
     }

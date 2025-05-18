@@ -19,6 +19,9 @@ public class EnemyControl: MonoBehaviour
     public Color enemyColor; // Default color was set with type
     public float knockbackforce = 5f; // Default knockback force was set with type
     public Renderer enemyRenderer; // Renderer component of the enemy
+    private AudioSource enemyAudio;
+    [SerializeField] private AudioClip[] audioClips;
+
 
     public void UpdateSize ()
     {
@@ -30,6 +33,11 @@ public class EnemyControl: MonoBehaviour
     {
         // Initialize the NavMeshAgent component
         agent = GetComponent<NavMeshAgent>();
+        enemyAudio = GetComponent<AudioSource>();
+
+        enemyAudio.clip = audioClips[UnityEngine.Random.Range( 0,audioClips.Length )];
+        enemyAudio.Play();
+
         agent.speed = movespeed;
         agent.autoBraking = false; // Disable auto-braking to allow continuous movement
         enemyRenderer = GetComponentInChildren<Renderer>(); // Get the Renderer component of the enemy
