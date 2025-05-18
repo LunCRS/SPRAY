@@ -16977,6 +16977,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MoveMachine (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7022205106535142423, guid: 72d5143b0118c2241a77ee1ea2aea82d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8127324871132835993, guid: 72d5143b0118c2241a77ee1ea2aea82d, type: 3}
       propertyPath: movement.y
       value: -1
@@ -25898,6 +25902,7 @@ MonoBehaviour:
   - {fileID: 1985853853}
   - {fileID: 28669391}
   - {fileID: 1782557603}
+  - {fileID: 1371524535}
 --- !u!114 &1177522308
 MonoBehaviour:
   m_ObjectHideFlags: 0
