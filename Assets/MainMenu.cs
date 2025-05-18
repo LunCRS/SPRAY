@@ -50,7 +50,7 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("Starting Game...");
         // 加载第一个场景（根据你的实际场景名修改）
-        SceneManager.LoadScene("Level_1"); // 或者使用具体的场景名称：SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("LevelSelection"); // 或者使用具体的场景名称：SceneManager.LoadScene("GameScene");
     }
 
     public void OpenSettings()

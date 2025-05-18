@@ -5,6 +5,8 @@ using UnityEngine;
 public class AirFan : MonoBehaviour
 {
     private Renderer rend;
+    private FanAnim anim;
+    private AudioSource audioSource;
 
     public float power = 1.0f;
     public float playerMultiplier = 1.0f;
@@ -20,6 +22,8 @@ public class AirFan : MonoBehaviour
         worldDirection = transform.TransformDirection(direction).normalized;
 
         rend = GetComponent<Renderer>();
+        anim = GetComponent<FanAnim>();
+        audioSource = GetComponent<AudioSource>();
 
         rend.material.color = Color.gray;
     }
@@ -33,11 +37,14 @@ public class AirFan : MonoBehaviour
         blowTimer += Time.deltaTime;
         if( blowTimer >= 0 )
         {
+            anim.DeactiveAnim();
             foreach (Collider col in colliders)
             {
                 Rigidbody rb = col.GetComponent<Rigidbody>();
                 if (col.CompareTag("Player"))
                 {
+                    anim.ActiveAnim();
+                    audioSource.Play();
                     rb.velocity = new Vector3( rb.velocity.x,0,rb.velocity.z );
                     rb.velocity += power * playerMultiplier * transform.up;
                     blowTimer = -blowCD;

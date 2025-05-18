@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour
     private GameObject mainCamera;
     public Rigidbody rb;
     private Renderer rend;
+    private AudioSource audio;
     private InputActionAsset inputActionAsset;
     #endregion
 
@@ -59,6 +60,7 @@ public class PlayerControl : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         rend = GetComponentInChildren<Renderer>();
+        audio = GetComponent<AudioSource>();
         inputActionAsset = GetComponent<PlayerInput>().actions;
         fireAction = inputActionAsset.FindAction("Fire");
         coyoteTimer = coyoteTime;
@@ -187,6 +189,7 @@ public class PlayerControl : MonoBehaviour
     {
         fireTimer = -fireRate;
         Transform trans = transform.Find("FirePoint");
+        audio.Play();
         CreateBullet(trans);
     }
     private void FireUpdate()
@@ -195,6 +198,7 @@ public class PlayerControl : MonoBehaviour
         if (isPerformingFire && fireTimer >= 0)
         {
             Transform trans = transform.Find("FirePoint");
+            audio.Play();
             CreateBullet(trans);
             fireTimer = -fireRate;
         }

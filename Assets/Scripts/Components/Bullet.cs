@@ -21,6 +21,7 @@ public class Bullet : MonoBehaviour
 
     [Header("Audio info")]
     [SerializeField] private AudioClip bulletHitSound;
+    [SerializeField] private AudioClip[] audioClips;
 
     private bool isDestroyed = false;
 
@@ -30,6 +31,9 @@ public class Bullet : MonoBehaviour
         trans = GetComponent<Transform>();
         rend = GetComponentInChildren<Renderer>();
         audioSource = GetComponent<AudioSource>();
+        
+        bulletHitSound = audioClips[UnityEngine.Random.Range( 0,audioClips.Length )];
+        audioSource.clip = bulletHitSound;
 
         bulletDirection = trans.forward;
 
@@ -49,7 +53,6 @@ public class Bullet : MonoBehaviour
         if (isDestroyed)
         {
             DestroyImmediate(gameObject);
-
         }
     }
 
@@ -79,7 +82,6 @@ public class Bullet : MonoBehaviour
                 isDestroyed = true;
             }
         }
-
         else if (collider.CompareTag("Bullettrigger"))
         {
             isDestroyed = true;
@@ -112,8 +114,6 @@ public class Bullet : MonoBehaviour
         {
             isDestroyed = true;
         }
-
-
         else if (collider.CompareTag("Ground"))
             isDestroyed = true;
         else if (collider.CompareTag("Target"))
