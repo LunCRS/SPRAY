@@ -33,8 +33,8 @@ public class Chaser : MonoBehaviour
         {
             //Debug.Log("Chaser_die");
 
-            player_L.isDead = true;
-            player_R.isDead = true;
+            // player_L.isDead = true;
+            // player_R.isDead = true;
             ResetMoveMachine.ResetAllMachines();
             ResetMovePlate.ResetAllMachines_MovePlate();
             ResetColorblock.ResetAllBlocks();

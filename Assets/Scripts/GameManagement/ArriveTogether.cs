@@ -46,5 +46,24 @@ public class ArriveTogether : MonoBehaviour
         }
     }
 
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            PlayerControl player = other.GetComponentInParent<PlayerControl>();
+            if (player != null)
+            {
+                if (player.playerID == 1)
+                {
+                    lArrive = false;
+                }
+                if (player.playerID == 2)
+                {
+                    rArrive = false;
+                }
+            }
+        }
+    }
+
 
 }

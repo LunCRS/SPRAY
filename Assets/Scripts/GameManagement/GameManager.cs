@@ -31,33 +31,33 @@ public class GameManager : MonoBehaviour
         reTimer_L = rebirthTime;
         reTimer_R = rebirthTime;
 
-        if(battleManager != null)
+        if (battleManager != null)
             battleScript = battleManager.GetComponent<BattleManager>();
     }
 
     void Update()
     {
-        if( control_L.isDead || control_R.isDead )
+        if (control_L.isDead || control_R.isDead)
         {
-            
-            if(battleScript != null)
+
+            if (battleScript != null)
                 battleScript.ResetEnemy();
         }
 
-        if( control_L.isDead )
+        if (control_L.isDead)
         {
             control_L.PositionLock();
             Player_L.transform.position = control_L.birthPlace.position;
-            if(inBattle)
+            if (inBattle)
                 Player_R.transform.position = control_R.birthPlace.position;
 
             control_L.isDead = false;
         }
-        if( control_R.isDead )
+        if (control_R.isDead)
         {
             control_R.PositionLock();
             Player_R.transform.position = control_R.birthPlace.position;
-            if(inBattle)
+            if (inBattle)
                 Player_L.transform.position = control_L.birthPlace.position;
 
             control_R.isDead = false;
@@ -68,16 +68,16 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void PlayerStandOnCheck ()
+    private void PlayerStandOnCheck()
     {
         RaycastHit hit;
 
-        if( Physics.Raycast( Player_R.transform.position,Vector3.down,out hit,standOnDis ) )
+        if (Physics.Raycast(Player_R.transform.position, Vector3.down, out hit, standOnDis))
         {
-            if( hit.collider.CompareTag( "Player" ) )
+            if (hit.collider.CompareTag("Player"))
             {
                 PlayerControl playerHit = hit.collider.GetComponentInParent<PlayerControl>();
-                if(playerHit.playerID == 1)
+                if (playerHit.playerID == 1)
                     control_L.isDead = true;
             }
         }
