@@ -73,10 +73,6 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-        if (IsGrounded())
-        {
-            // Debug.Log("Grounded");
-        }
 
         if (isDead)
         {

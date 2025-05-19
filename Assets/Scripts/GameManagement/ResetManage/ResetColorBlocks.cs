@@ -43,6 +43,7 @@ public class ResetColorBlocks_2 : MonoBehaviour
             GameObject block = pair.Key;
             BlockInitialState state = pair.Value;
 
+
             if (block != null)
             {
                 Rigidbody blockRigidbody = block.GetComponent<Rigidbody>();

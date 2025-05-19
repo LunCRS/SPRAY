@@ -18,6 +18,6 @@ public class ThirdPersonDirectionFollow : MonoBehaviour
     void Update()
     {
         float camRotation = mainCamera.transform.rotation.eulerAngles.y;
-        transform.rotation = Quaternion.Slerp( transform.rotation,Quaternion.Euler( 0,camRotation,0 ),turnSpeed * Time.deltaTime );
+        transform.rotation = Quaternion.Lerp( transform.rotation,Quaternion.Euler( 0,camRotation,0 ),turnSpeed * Time.deltaTime );
     }
 }

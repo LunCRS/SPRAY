@@ -44,7 +44,10 @@ public class Bullet : MonoBehaviour
     {
         lifeTimer += Time.deltaTime;
         if (lifeTimer >= lifeTime)
+        {
             isDestroyed = true;
+            DestroyImmediate(gameObject);
+        }
 
         if (isDestroyed && lifeTimer < lifeTime)
         {
