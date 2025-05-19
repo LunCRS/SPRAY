@@ -23,23 +23,23 @@ public class ShuiLiFangManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if( playercontrol1.rb.velocity.y ==0 )
+        if (playercontrol1.rb.velocity.y == 0 || playercontrol2.rb.velocity.y == 0)
         {
             playercontrol1.isDead = true;
             playercontrol2.isDead = true;
             playercontrol1.moveSpeed *= 0.8f;
             playercontrol2.moveSpeed *= 0.8f;
-            ShuiLiFang.SetActive( false );
+            ShuiLiFang.SetActive(false);
         }
-        else if( playercontrol2.rb.velocity.y ==0 )
-        {
-            playercontrol2.isDead = true;
-            playercontrol1.isDead = true;
-            playercontrol1.moveSpeed *= 0.8f;
-            playercontrol2.moveSpeed *= 0.8f;
-            ShuiLiFang.SetActive( false );
+        // else if (playercontrol2.rb.velocity.y == 0)
+        // {
+        //     playercontrol2.isDead = true;
+        //     playercontrol1.isDead = true;
+        //     playercontrol1.moveSpeed *= 0.8f;
+        //     playercontrol2.moveSpeed *= 0.8f;
+        //     ShuiLiFang.SetActive(false);
 
 
-        }
+        // }
     }
 }
