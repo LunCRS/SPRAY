@@ -6,10 +6,13 @@ public class Key : MonoBehaviour
 {
     [SerializeField] private float rotSpeed = 60f;
     [SerializeField] private GameObject mazeManager;
+    [SerializeField] private GameObject audioPlayer;
+    private AudioSource audioSource;
     private MazeManager manager;
     void Start()
     {
         manager = mazeManager.GetComponent<MazeManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -21,8 +24,10 @@ public class Key : MonoBehaviour
     {
         if( other.CompareTag( "Player" ) )
         {
+            GameObject audio = Instantiate( audioPlayer,transform.position,Quaternion.identity );
             gameObject.SetActive( false );
             manager.GetKey();
+            
         }
     }
 }

@@ -7,7 +7,7 @@ public class FinalStage : MonoBehaviour
 {
     private Renderer rend;
     public Transform stage_position;
-    private bool isPlayerOnStage = false;
+    public bool isPlayerOnStage = false;
     public int stage_number;
     public GameObject Partner;
     public bool isPlayerOnStage_Partner = false;
@@ -16,15 +16,20 @@ public class FinalStage : MonoBehaviour
     public GameObject L_Cam_New;
     public GameObject R_Cam_Old;
     public GameObject R_Cam_New;
+    public GameObject FinalCam;
     public GameObject Cross_L;
     public GameObject Cross_R;
     public GameObject Player_L;
     public GameObject Player_R;
     public GameObject Airfan;
+    public GameObject Menu;
+    [SerializeField] private GameObject darkCanvas;
+    private CamDark dark;
     // Start is called before the first frame update
     void Start()
     {
         partner = Partner.GetComponent<FinalStage>();
+        dark = darkCanvas.GetComponent<CamDark>();
     }
 
     // Update is called once per frame
@@ -50,11 +55,13 @@ public class FinalStage : MonoBehaviour
                 isPlayerOnStage = true;
                 player.PositionLock();
                 player.transform.position = stage_position.position;
-                player.transform.eulerAngles = Vector3.zero;
+                other.transform.forward = Vector3.forward;
+
+                //player.transform.eulerAngles = Vector3.zero;
                 player.enabled = false;
                 camera.enabled = false;
-                L_Cam_Old.SetActive(false);
-                L_Cam_New.SetActive(true);
+                L_Cam_Old.SetActive( false );
+                L_Cam_New.SetActive( true );
                 Cross_L.SetActive(false);
                 rb.isKinematic = true;
 
@@ -68,11 +75,12 @@ public class FinalStage : MonoBehaviour
                 isPlayerOnStage = true;
                 player.PositionLock();
                 player.transform.position = stage_position.position;
-                player.transform.eulerAngles = Vector3.zero;
+                other.transform.forward = Vector3.forward;
+                //player.transform.eulerAngles = Vector3.zero;
                 player.enabled = false;
                 camera.enabled = false;
-                R_Cam_Old.SetActive(false);
-                R_Cam_New.SetActive(true);
+                R_Cam_Old.SetActive( false );
+                R_Cam_New.SetActive( true );
                 Cross_R.SetActive(false);
                 rb.isKinematic = true;
             }
@@ -80,21 +88,36 @@ public class FinalStage : MonoBehaviour
 
     }
 
+    //private void OnTriggerExit ( Collider other )
+    //{
+    //    isPlayerOnStage = false;
+    //}
 
 
     void ActivateStage()
     {
         if (isPlayerOnStage && isPlayerOnStage_Partner)
         {
-            Airfan.SetActive(true);
-            FinalMove move1 = Player_L.GetComponent<FinalMove>();
-            FinalMove move2 = Player_R.GetComponent<FinalMove>();
-            Rigidbody rb1 = Player_L.GetComponent<Rigidbody>();
-            Rigidbody rb2 = Player_R.GetComponent<Rigidbody>();
-            rb1.isKinematic = false;
-            rb2.isKinematic = false;
-            move1.enabled = true;
-            move2.enabled = true;
+            if( !dark.hasdark )
+                dark.startDark = true;
+            if( dark.endDark )
+            {
+                Rigidbody rb1 = Player_L.GetComponent<Rigidbody>();
+                Rigidbody rb2 = Player_R.GetComponent<Rigidbody>();
+                rb1.isKinematic = false;
+                rb2.isKinematic = false;
+                Airfan.SetActive( true );
+                FinalCam.SetActive( true );
+                Menu.SetActive( false );
+
+                FinalMove move1 = Player_L.GetComponent<FinalMove>();
+                FinalMove move2 = Player_R.GetComponent<FinalMove>();
+
+          
+                move1.enabled = true;
+                move2.enabled = true;
+            }
+
         }
     }
 }

@@ -23,8 +23,6 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        //imgL = Canvas_L.GetComponentInChildren<Image>();
-        //imgR = Canvas_R.GetComponentInChildren<Image>();
         control_L = Player_L.GetComponent<PlayerControl>();
         control_R = Player_R.GetComponent<PlayerControl>();
 

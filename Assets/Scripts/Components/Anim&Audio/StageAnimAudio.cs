@@ -5,6 +5,7 @@ using UnityEngine;
 public class StageAnimAudio : MonoBehaviour
 {
     [SerializeField] private bool activeOnce = false;
+    private bool isActive = false;
     [SerializeField] private GameObject offModel, onModel;
 
     private AudioSource audioSource;
@@ -17,12 +18,14 @@ public class StageAnimAudio : MonoBehaviour
 
     private void OnTriggerEnter ( Collider other )
     {
-        if( other.CompareTag( "Player" ) )
+        if( other.CompareTag( "Player" ))
         {
             audioSource.clip = onAudio;
-            audioSource.Play();
+            if(!isActive)
+                audioSource.Play();
             offModel.SetActive( false );
             onModel.SetActive( true );
+            isActive = true;
         }
     }
 

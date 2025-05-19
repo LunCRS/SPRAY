@@ -11,6 +11,7 @@ public class ResetPlate : MonoBehaviour
     private ThirdPersonCamera thirdPersonCamera;
     public int type;
     public GameObject ShuiLiFang;
+    public float scale;
 
 
     private void OnTriggerEnter(Collider other)
@@ -30,6 +31,8 @@ public class ResetPlate : MonoBehaviour
             thirdPersonCamera.topClamp = new_angle_top;
             thirdPersonCamera.bottomClamp = new_angle_down;
 
+            other.transform.localScale *= scale;
+
             playerControl.hasReset = true;
         }
     }
@@ -40,6 +43,7 @@ public class ResetPlate : MonoBehaviour
         if (playerControl.hasReset)
         {
             playerControl.hasReset = false;
+
         }
         if (type == 0)
         {

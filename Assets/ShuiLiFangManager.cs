@@ -37,6 +37,7 @@ public class ShuiLiFangManager : MonoBehaviour
             playercontrol1.moveSpeed *= 0.8f;
             playercontrol2.moveSpeed *= 0.8f;
             ShuiLiFang.SetActive(false);
+            return;
         }
         else if (playercontrol2.rb.velocity.y == 0)
         {
@@ -46,8 +47,6 @@ public class ShuiLiFangManager : MonoBehaviour
             playercontrol1.moveSpeed *= 0.8f;
             playercontrol2.moveSpeed *= 0.8f;
             ShuiLiFang.SetActive(false);
-
-
         }
     }
 }
