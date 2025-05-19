@@ -9,10 +9,12 @@ public class MainMenu : MonoBehaviour
     [Header("UI Elements")]
     public GameObject mainMenuPanel; // 主菜单面板
     public GameObject settingsPanel; // 设置面板（需在 Inspector 中赋值）
+    public GameObject LevelSelection;  
     public Button startButton;       // 开始按钮
     public Button settingsButton;    // 设置按钮
     public Button quitButton;        // 退出按钮
-    public Button backButton;        // 返回主菜单按钮（在 SettingsPanel 中）
+    public Button backButton1;        // 返回主菜单按钮（在 SettingsPanel 中）
+    public Button backButton2;
 
     // private void Awake()
     // {
@@ -39,8 +41,11 @@ public class MainMenu : MonoBehaviour
         if (quitButton != null)
             quitButton.onClick.AddListener(QuitGame);
 
-        if (backButton != null)
-            backButton.onClick.AddListener(BackToMainMenu);
+        if (backButton1 != null)
+            backButton1.onClick.AddListener(BackToMainMenu1);
+
+        if (backButton2 != null)
+            backButton2.onClick.AddListener( BackToMainMenu2 );
 
         // 显示主菜单
         SwitchPanel(mainMenuPanel, settingsPanel);
@@ -50,7 +55,7 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("Starting Game...");
         // 加载第一个场景（根据你的实际场景名修改）
-        SceneManager.LoadScene("LevelSelection"); // 或者使用具体的场景名称：SceneManager.LoadScene("GameScene");
+        SwitchPanel( LevelSelection,mainMenuPanel ); // 或者使用具体的场景名称：SceneManager.LoadScene("GameScene");
     }
 
     public void OpenSettings()
@@ -59,10 +64,16 @@ public class MainMenu : MonoBehaviour
         SwitchPanel(settingsPanel, mainMenuPanel);
     }
 
-    public void BackToMainMenu()
+    public void BackToMainMenu1()
     {
         Debug.Log("Returning to Main Menu...");
         SwitchPanel(mainMenuPanel, settingsPanel);
+    }
+
+    public void BackToMainMenu2 ()
+    {
+        Debug.Log( "Returning to Main Menu..." );
+        SwitchPanel( mainMenuPanel,LevelSelection );
     }
 
     public void QuitGame()

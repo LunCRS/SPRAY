@@ -7,8 +7,8 @@ public class ColorBlock : MonoBehaviour
     public Renderer rend;
     public GameObject partner;
     public Color originColor = Color.blue;
-    [SerializeField] private bool colorFixBack = false;
-    [SerializeField] private bool canBeChanged = true;
+    public bool colorFixBack = false;
+    public bool canBeChanged = true;
     [SerializeField] private float fixBackTime = 3.0f;
     private Material[] mats;
 
