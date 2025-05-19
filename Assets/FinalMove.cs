@@ -6,7 +6,11 @@ public class FinalMove : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float fallSpeedLimit = 2f;
+    public float jumpForce = 5f;
+    public float jumpTriggerDistance = 10f;
     private Rigidbody rb;
+    private float distanceTraveled = 0f;
+    private bool hasJumped = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +23,19 @@ public class FinalMove : MonoBehaviour
 
         // 沿世界坐标 Z 轴正方向移动（世界“前方”）
         Vector3 worldForward = Vector3.forward;
+        float distanceThisFrame = moveSpeed * Time.deltaTime;
+        distanceTraveled += distanceThisFrame;
         rb.velocity = new Vector3(0, rb.velocity.y, moveSpeed);
         if (rb.velocity.y < -fallSpeedLimit)
         {
             rb.velocity = new Vector3(rb.velocity.x, -fallSpeedLimit, moveSpeed);
+        }
+        if (distanceTraveled >= jumpTriggerDistance && !hasJumped)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, jumpForce, moveSpeed);
+            hasJumped = true;
+
+
         }
     }
 }
