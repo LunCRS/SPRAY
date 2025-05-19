@@ -49,6 +49,7 @@ public class PlayerControl : MonoBehaviour
     private Transform standOnDetect;
     public int player_type;
     public bool hasReset = false;
+    public bool fire_allow = true;
 
     void Start()
     {
@@ -141,14 +142,14 @@ public class PlayerControl : MonoBehaviour
         return false;
     }
 
-    public bool IsShuiLiFang ()
+    public bool IsShuiLiFang()
     {
         RaycastHit hit_ShuiLiFang;
 
-        if( Physics.Raycast( transform.position,Vector3.down,out hit_ShuiLiFang,ShuiLiFangCheckDis ) )
+        if (Physics.Raycast(transform.position, Vector3.down, out hit_ShuiLiFang, ShuiLiFangCheckDis))
         {
             //Debug.Log( gameObject.layer );
-            return hit_ShuiLiFang.collider.gameObject.layer == LayerMask.NameToLayer( "ShuiLiFang" ); ;
+            return hit_ShuiLiFang.collider.gameObject.layer == LayerMask.NameToLayer("ShuiLiFang"); ;
         }
 
         return false;
@@ -182,11 +183,12 @@ public class PlayerControl : MonoBehaviour
         {
             rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
         }
-        
+
     }
 
     void OnFire(InputValue value)
     {
+
         fireTimer = -fireRate;
         Transform trans = transform.Find("FirePoint");
         audioSource.Play();

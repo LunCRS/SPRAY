@@ -42,9 +42,18 @@ public class ResetPlate : MonoBehaviour
             playerControl.hasReset = false;
         }
         if (type == 0)
+        {
             ShuiLiFang.SetActive(true);
+            playerControl.fire_allow = false;
+        }
+
+
         else if (type == 1)
+        {
             ShuiLiFang.SetActive(false);
+            playerControl.fire_allow = true;
+        }
+
 
     }
 }

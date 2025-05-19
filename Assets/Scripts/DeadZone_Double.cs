@@ -19,8 +19,8 @@ public class DeadZone_Double : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerControl1.isDead = true;
-            playerControl2.isDead = true;
+            playerControl1.transform.position = playerControl1.birthPlace.position;
+            playerControl2.transform.position = playerControl2.birthPlace.position;
 
 
 

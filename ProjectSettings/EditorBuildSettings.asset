@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TeachingScene.unity
     guid: 4756939189e7b33449dfd91524ae86f1
+  - enabled: 1
+    path: Assets/Scenes/Final Level.unity
+    guid: d60bd984dab3069449b2332e75f0e27f
   m_configObjects: {}

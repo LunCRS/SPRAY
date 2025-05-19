@@ -79,10 +79,16 @@ public class Stage_partner : MonoBehaviour
                 move_machine.GetComponent<MoveMachine>().stop();
             }
             else if (stage_type == 2)
-            { 
-                GameObject targetObject = machine_controller.GetLauncherForButton( gameObject );
-                targetObject.SetActive( !targetObject.activeSelf );
+            {
+                GameObject targetObject = machine_controller.GetLauncherForButton(gameObject);
+                targetObject.SetActive(false);
             }
+            else if (stage_type == 3)
+            {
+                GameObject targetObject = machine_controller.GetLauncherForButton(gameObject);
+                targetObject.SetActive(true);
+            }
+
         }
     }
 }
