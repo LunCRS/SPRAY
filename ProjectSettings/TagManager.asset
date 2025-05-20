@@ -21,6 +21,7 @@ TagManager:
   - Chaser_die
   - Die
   - ConveyorBlet
+  - LittleGrey
   layers:
   - Default
   - TransparentFX
