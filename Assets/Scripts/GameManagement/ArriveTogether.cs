@@ -9,7 +9,7 @@ public class ArriveTogether : MonoBehaviour
     [SerializeField] private Transform Birth_L;
     [SerializeField] private Transform Birth_R;
     private PlayerControl lPlayer, rPlayer;
-    private bool lArrive = false, rArrive = false;
+    [SerializeField] private bool lArrive = false, rArrive = false;
 
     void Start()
     {
